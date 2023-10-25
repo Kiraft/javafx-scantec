@@ -76,7 +76,8 @@ public class HomeController {
                 Image img = new Image(new FileInputStream(p.getDireccionImagen()));
                 ImageProduct.setImage(img);
             }else{
-
+                contenedorRegistrarProducto.setVisible(true);
+                txtCodigoBarras.setText(txtCode.getText());
             }
 
         }else{
