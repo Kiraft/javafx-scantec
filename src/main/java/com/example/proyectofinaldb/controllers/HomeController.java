@@ -13,6 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.io.FileInputStream;
@@ -45,7 +47,13 @@ public class HomeController {
     private Label labelName1;
 
     @FXML
+    private Label labelStock;
+
+    @FXML
     private TextField txtCode;
+
+    @FXML
+    private TextField txtCodigoBarras;
 
     @FXML
     private TextField txtNombre;
@@ -56,14 +64,14 @@ public class HomeController {
     @FXML
     private TextField txtStock;
 
+    ImplementProducto implementProducto = new ImplementProducto();
     @FXML
     void agregar(ActionEvent event) {
 
     }
-
-    ImplementProducto implementProducto = new ImplementProducto();
     @FXML
     void buscar(ActionEvent event) throws FileNotFoundException {
+
         if (!txtCode.getText().isEmpty()){
 
             if (implementProducto.porCodigoBarras(txtCode.getText()) != null){
@@ -84,6 +92,15 @@ public class HomeController {
             AlertUtil.showAlert(AlertType.ERROR, "Error codigo barras", "EL CAMPO ESTA VACIO");
         }
 
+        txtCode.clear();
+
+    }
+
+    @FXML
+    void enter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            btnBuscar.fire();
+        }
     }
 
 

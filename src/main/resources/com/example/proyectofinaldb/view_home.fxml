@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectofinaldb.controllers.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectofinaldb.controllers.HomeController">
    <children>
       <Label layoutX="260.0" layoutY="41.0" text="Escanear">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="txtCode" layoutX="204.0" layoutY="78.0" prefHeight="31.0" prefWidth="194.0" />
+      <TextField fx:id="txtCode" layoutX="204.0" layoutY="78.0" onKeyPressed="#enter" prefHeight="31.0" prefWidth="194.0" />
       <Button fx:id="btnBuscar" layoutX="414.0" layoutY="81.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
-      <Pane fx:id="contenedorLeerProducto" layoutX="72.0" layoutY="142.0" prefHeight="325.0" prefWidth="458.0" style="-fx-border-color: #000000;" visible="false">
+      <Pane fx:id="contenedorLeerProducto" layoutX="72.0" layoutY="142.0" prefHeight="392.0" prefWidth="458.0" style="-fx-border-color: #000000;" visible="false">
          <children>
             <VBox alignment="TOP_CENTER" layoutX="105.0" layoutY="14.0" prefHeight="279.0" prefWidth="249.0">
                <children>
@@ -52,12 +52,25 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </Label>
+                  <Label text="Stock">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelStock">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
                   <ImageView fx:id="ImageProduct" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
          </children>
       </Pane>
-      <Pane fx:id="contenedorRegistrarProducto" layoutX="72.0" layoutY="142.0" prefHeight="325.0" prefWidth="458.0" style="-fx-border-color: #000000;" visible="false">
+      <Pane fx:id="contenedorRegistrarProducto" layoutX="72.0" layoutY="142.0" prefHeight="403.0" prefWidth="458.0" style="-fx-border-color: #000000;" visible="false">
          <children>
             <Label layoutX="151.0" layoutY="15.0" text="Registrar Producto" textAlignment="CENTER">
                <font>
@@ -91,7 +104,16 @@
                </padding>
             </Label>
             <TextField fx:id="txtStock" layoutX="132.0" layoutY="233.0" prefHeight="36.0" prefWidth="194.0" />
-            <Button fx:id="btnAgregar" layoutX="203.0" layoutY="286.0" mnemonicParsing="false" onAction="#agregar" text="Agregar" />
+            <Button fx:id="btnAgregar" layoutX="200.0" layoutY="364.0" mnemonicParsing="false" onAction="#agregar" text="Agregar" />
+            <Label layoutX="136.0" layoutY="269.0" text="Codigo de Barras">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="txtCodigoBarras" layoutX="132.0" layoutY="305.0" prefHeight="36.0" prefWidth="194.0" />
          </children>
       </Pane>
    </children>
