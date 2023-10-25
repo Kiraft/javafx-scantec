@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectofinaldb.controllers.HomeController">
+   <children>
+      <TextField fx:id="txtCode" layoutX="204.0" layoutY="78.0" prefHeight="31.0" prefWidth="194.0" />
+      <Label layoutX="260.0" layoutY="41.0" text="Escanear">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Pane fx:id="contenedorProducto" layoutX="72.0" layoutY="142.0" prefHeight="325.0" prefWidth="458.0" style="-fx-border-color: #000000;">
+         <children>
+            <VBox alignment="TOP_CENTER" layoutX="105.0" layoutY="14.0" prefHeight="279.0" prefWidth="249.0">
+               <children>
+                  <Label text="Nombre" textAlignment="CENTER">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="labelName" alignment="CENTER">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Precio">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="LabelPrice">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+                  <ImageView fx:id="ImageProduct" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Button fx:id="btnBuscar" layoutX="414.0" layoutY="81.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+   </children>
+</AnchorPane>
