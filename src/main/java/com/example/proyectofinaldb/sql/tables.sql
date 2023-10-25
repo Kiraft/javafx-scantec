@@ -9,21 +9,38 @@ CREATE TABLE productos(
     nombre VARCHAR(255) NOT NULL,
     precio DOUBLE NOT NULL,
     codigo_barras VARCHAR(255) NOT NULL,
-    direccion_imagen VARCHAR(255) NOT NULL
+    direccion_imagen VARCHAR(255) NOT NULL,
+    stock INT NOT NULL
 );
 
-INSERT INTO productos (nombre, precio, codigo_barras, direccion_imagen) VALUES
+INSERT INTO productos (nombre, precio, codigo_barras, direccion_imagen, stock) VALUES
 (
-'Cocacola', 30.00, 2020, 'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG'
+    'Cocacola',
+     30.00,
+     2020,
+     'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG',
+     200
 ),
 (
-'Pepsi', 20.00, 2021, 'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/pepsi.PNG'
+    'Pepsi',
+    20.00,
+    2021,
+    'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/pepsi.PNG',
+    100
 );
 
-INSERT INTO productos (nombre, precio, codigo_barras, direccion_imagen) VALUES
+INSERT INTO productos (nombre, precio, codigo_barras, direccion_imagen, stock) VALUES
 (
-'Galletas Marias', 50.00, 2022, 'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/galletas.PNG'
+    'Galletas Marias',
+    50.00,
+    2022,
+    'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/galletas.PNG',
+    50
 ),
 (
-'Laptop Gamer', 7000.00, 2023, 'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/laptop.PNG'
+    'Laptop Gamer',
+    7000.00,
+    2023,
+    'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/laptop.PNG',
+    10
 );

@@ -1,5 +1,6 @@
-package com.example.proyectofinaldb.models;
+package com.example.proyectofinaldb.models.repositories;
 
+import com.example.proyectofinaldb.models.Producto;
 import com.example.proyectofinaldb.models.interfaces.Repository;
 import com.example.proyectofinaldb.util.ConexionDB;
 
@@ -25,9 +26,22 @@ public class ImplementProducto implements Repository<Producto> {
     }
 
     @Override
-    public void guardar(Producto alumno) {
+    public void guardar(Producto producto) {
+        String sql = "INSERT INTO productos (nombre, precio, codigo_barras, direccion_imagen, stock) VALUES (?, ?, ?, ?, ?),";
 
+        try (PreparedStatement stmt = getConnection().prepareStatement(sql) ) {
+            stmt.setString(1, producto.getNombre());
+            stmt.setDouble(2, producto.getPrecio());
+            stmt.setString(3, producto.getCodigoBarras());
+            stmt.setString(4, producto.getDireccionImagen());
+            stmt.setLong(5, producto.getStock());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+
+        }
     }
+
 
     @Override
     public void eliminar(Long id) {
@@ -47,6 +61,7 @@ public class ImplementProducto implements Repository<Producto> {
                     p.setPrecio(rs.getDouble("precio"));
                     p.setCodigoBarras(rs.getString("codigo_barras"));
                     p.setDireccionImagen(rs.getString("direccion_imagen"));
+                    p.setStock(rs.getLong("stock"));
                 }
             }
         } catch (SQLException e) {

@@ -13,4 +13,6 @@ module com.example.proyectofinaldb {
     opens com.example.proyectofinaldb.models to javafx.fxml;
     exports com.example.proyectofinaldb.models.interfaces;
     opens com.example.proyectofinaldb.models.interfaces to javafx.fxml;
+    exports com.example.proyectofinaldb.models.repositories;
+    opens com.example.proyectofinaldb.models.repositories to javafx.fxml;
 }
