@@ -18,14 +18,14 @@ INSERT INTO productos (nombre, precio, codigo_barras, direccion_imagen, stock) V
     'Cocacola',
      30.00,
      2020,
-     'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG',
+     'src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG',
      200
 ),
 (
     'Pepsi',
     20.00,
     2021,
-    'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/pepsi.PNG',
+    'src/main/resources/com/example/proyectofinaldb/assets/pepsi.PNG',
     100
 );
 
@@ -34,13 +34,13 @@ INSERT INTO productos (nombre, precio, codigo_barras, direccion_imagen, stock) V
     'Galletas Marias',
     50.00,
     2022,
-    'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/galletas.PNG',
+    'src/main/resources/com/example/proyectofinaldb/assets/galletas.PNG',
     50
 ),
 (
     'Laptop Gamer',
     7000.00,
     2023,
-    'C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/laptop.PNG',
+    'src/main/resources/com/example/proyectofinaldb/assets/laptop.PNG',
     10
 );

@@ -90,6 +90,8 @@ public class HomeController {
     @FXML
     private TextField txtStock;
 
+    File fileImg = null;
+
     ImplementProducto implementProducto = new ImplementProducto();
 
     @FXML
@@ -99,8 +101,13 @@ public class HomeController {
             p.setNombre(txtNombre.getText());
             p.setPrecio(Double.parseDouble(txtPrecio.getText()));
             p.setCodigoBarras(txtCodigoBarras.getText());
-            p.setDireccionImagen("C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG");
+           if (fileImg == null){
+               p.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
+           }else {
+               p.setDireccionImagen(fileImg.getAbsolutePath());
+           }
             p.setStock(Long.parseLong(txtStock.getText()));
+
 
         implementProducto.guardar(p);
         BarCodeGenerator.generatorBarCode(txtNombre.getText(), txtCodigoBarras.getText());
@@ -128,6 +135,7 @@ public class HomeController {
         hilo.start();
 
         clearFields();
+        imgRegister.setImage(null);
 
     }
 
@@ -195,7 +203,34 @@ public class HomeController {
 
             Runnable fileChooserRunnable = () -> {
                 File file = fileChooser.showOpenDialog(stage);
-
+                fileImg = file;
+//                if (file != null) {
+//
+//                    // FileSystemView fileSystemView = FileSystemView.getFileSystemView();
+//                    // File carpetaDestino = new File(fileSystemView.getHomeDirectory().getPath() + File.separator + "tramites-tecnm" + File.separator + "docs" + File.separator + nombreAlumno);
+//                    File carpetaDestino = new File("C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/");
+//
+//                    if (!carpetaDestino.exists()) {
+//                        carpetaDestino.mkdirs();
+//                    }
+//
+//                    File Destino = new File(carpetaDestino.getAbsolutePath() + File.separator + file.getName());
+//
+//                    if (file.renameTo(Destino)) {
+//                        labelSubir.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
+//                        //Query de cargado de archivo
+//                        ARDAO.setArchivo(alumno.getNumeroControl(), Destino.getAbsolutePath(), id_archivo);
+//
+//                        botonSubirArchivo.setDisable(true);
+//                        imageView.setDisable(false);
+//
+//
+//                    } else {
+//                        AlertUtil.showAlert(AlertType.ERROR, "ERROR SUBIDA DE ARHIVO", "Errpr al guardar archivo");
+//                    }
+//
+//
+//                }
                 Image img = null;
                 try {
                     img = new Image(new FileInputStream(file.getAbsolutePath()));
