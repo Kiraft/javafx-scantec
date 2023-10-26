@@ -40,6 +40,12 @@ public class HomeController {
     private Button btnCargarImg;
 
     @FXML
+    private Button btnEditar;
+
+    @FXML
+    private Button btnEliminar;
+
+    @FXML
     private Pane contenedorLeerProducto;
 
     @FXML
@@ -244,6 +250,20 @@ public class HomeController {
             Platform.runLater(fileChooserRunnable);
         });
         hiloCargaArchivo.start();
+    }
+
+    @FXML
+    void editar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void eliminar(ActionEvent event) {
+        implementProducto.eliminarPorCodigoBarras(labelBarCode.getText());
+        AlertUtil.showAlert(AlertType.CONFIRMATION, "EXITOSO", "SE A ELIMINADO EL PRODUCTO");
+        contenedorLeerProducto.setVisible(false);
+        imgWelcome.setVisible(true);
+        labelWelcome.setVisible(true);
     }
 
 }

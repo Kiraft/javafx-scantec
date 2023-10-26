@@ -40,7 +40,7 @@
       </Pane>
       <Pane fx:id="contenedorLeerProducto" layoutX="53.0" layoutY="142.0" prefHeight="403.0" prefWidth="574.0" style="-fx-border-color: #000000;" visible="false">
          <children>
-            <VBox layoutX="47.0" layoutY="96.0" prefHeight="211.0" prefWidth="249.0">
+            <VBox layoutX="47.0" layoutY="79.0" prefHeight="211.0" prefWidth="249.0">
                <children>
                   <Label text="Nombre" textAlignment="CENTER">
                      <font>
@@ -103,12 +103,22 @@
                   <Line endX="122.0" startX="-100.0" stroke="#cfd5db" strokeWidth="2.0" />
                </children>
             </VBox>
-            <ImageView fx:id="ImageProduct" fitHeight="223.0" fitWidth="232.0" layoutX="309.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="ImageProduct" fitHeight="223.0" fitWidth="232.0" layoutX="309.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="171.0" layoutY="14.0" text="Producto encontrado">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
+            <Button fx:id="btnEliminar" layoutX="172.0" layoutY="345.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="31.0" prefWidth="98.0" style="-fx-background-color: #343131;" text="Eliminar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnEditar" layoutX="319.0" layoutY="345.0" mnemonicParsing="false" onAction="#editar" prefHeight="31.0" prefWidth="98.0" style="-fx-background-color: #343131;" text="Editar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="contenedorRegistrarProducto" layoutX="53.0" layoutY="142.0" prefHeight="403.0" prefWidth="574.0" style="-fx-border-color: #000000;" visible="false">

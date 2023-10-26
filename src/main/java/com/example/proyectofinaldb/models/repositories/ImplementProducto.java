@@ -69,4 +69,17 @@ public class ImplementProducto implements Repository<Producto> {
         }
         return p;
     }
+
+    public void eliminarPorCodigoBarras(String code){
+        System.out.println(code);
+        String sql = "DELETE FROM productos WHERE codigo_barras = ?";
+
+        try (PreparedStatement stmt = getConnection().prepareStatement(sql) ) {
+            stmt.setString(1, code);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+    }
 }
