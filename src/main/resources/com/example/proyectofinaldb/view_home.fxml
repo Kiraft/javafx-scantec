@@ -24,7 +24,7 @@
             <Image url="@assets/IM.png" />
          </image>
       </ImageView>
-      <Pane layoutX="-6.0" prefHeight="131.0" prefWidth="686.0" style="-fx-background-color: #528dc9;">
+      <Pane layoutX="-6.0" prefHeight="131.0" prefWidth="686.0" style="-fx-background-color: #343131;">
          <children>
             <Label layoutX="302.0" layoutY="32.0" text="Escanear" textFill="WHITE">
                <font>
@@ -32,7 +32,10 @@
                </font>
             </Label>
             <TextField fx:id="txtCode" layoutX="246.0" layoutY="69.0" onKeyPressed="#enter" prefHeight="31.0" prefWidth="194.0" />
-            <Button fx:id="btnBuscar" layoutX="451.0" layoutY="72.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+            <Button fx:id="btnBuscar" layoutX="451.0" layoutY="72.0" mnemonicParsing="false" onAction="#buscar" style="-fx-background-color: #343131; -fx-border-color: #FFFFFF; -fx-background-radius: 5; -fx-border-radius: 5;" text="Buscar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
       </Pane>
       <Pane fx:id="contenedorLeerProducto" layoutX="53.0" layoutY="142.0" prefHeight="403.0" prefWidth="574.0" style="-fx-border-color: #000000;" visible="false">
