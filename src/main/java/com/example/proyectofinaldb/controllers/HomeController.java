@@ -55,6 +55,12 @@ public class HomeController {
     private ImageView imgRegister;
 
     @FXML
+    private ImageView imgWelcome;
+
+    @FXML
+    private Label labelBarCode;
+
+    @FXML
     private Label labelName;
 
     @FXML
@@ -65,6 +71,9 @@ public class HomeController {
 
     @FXML
     private Label labelStock;
+
+    @FXML
+    private Label labelWelcome;
 
     @FXML
     private TextField txtCode;
@@ -123,6 +132,9 @@ public class HomeController {
     @FXML
     void buscar(ActionEvent event) throws FileNotFoundException {
 
+        labelWelcome.setVisible(false);
+        imgWelcome.setVisible(false);
+
         if (!txtCode.getText().isEmpty()){
 
             if (implementProducto.porCodigoBarras(txtCode.getText()) != null){
@@ -134,6 +146,7 @@ public class HomeController {
                 labelName.setText(p.getNombre());
                 labelPrice.setText(String.valueOf(p.getPrecio()));
                 labelStock.setText(String.valueOf(p.getStock()));
+                labelBarCode.setText(String.valueOf(p.getCodigoBarras()));
 
 //                String imagePath = "src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG";
 //                Image img = new Image(getClass().getResourceAsStream(imagePath));
