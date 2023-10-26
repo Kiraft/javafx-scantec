@@ -18,7 +18,7 @@ public class BarCodeGenerator {
     public static void generatorBarCode(String nombre, String code){
 
         String barcodeData = code; // Datos que se codificarán en el código de barras
-        String barcodeFile = nombre + ".png"; // Nombre del archivo PNG de salida
+        String barcodeFile = "bar-codes/"+nombre + ".png"; // Nombre del archivo PNG de salida
 
         int width = 300; // Ancho de la imagen del código de barras
         int height = 100; // Altura de la imagen del código de barras

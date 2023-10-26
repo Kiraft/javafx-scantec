@@ -117,7 +117,7 @@ public class HomeController {
             Platform.runLater(() -> {
                 Image img = null;
                 try {
-                    img = new Image(new FileInputStream(nombreAux));
+                    img = new Image(new FileInputStream("bar-codes/" + nombreAux));
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
@@ -127,16 +127,23 @@ public class HomeController {
 
         hilo.start();
 
+        clearFields();
 
     }
+
+    private void clearFields() {
+        txtNombre.clear();
+        txtCodigoBarras.clear();
+        txtPrecio.clear();
+        txtStock.clear();
+    }
+
     @FXML
     void buscar(ActionEvent event) throws FileNotFoundException {
 
-        labelWelcome.setVisible(false);
-        imgWelcome.setVisible(false);
-
         if (!txtCode.getText().isEmpty()){
-
+            labelWelcome.setVisible(false);
+            imgWelcome.setVisible(false);
             if (implementProducto.porCodigoBarras(txtCode.getText()) != null){
                 contenedorSuccessfulRegister.setVisible(false);
                 contenedorRegistrarProducto.setVisible(false);
