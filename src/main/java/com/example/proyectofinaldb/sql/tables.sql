@@ -15,9 +15,9 @@ CREATE TABLE productos(
 
 INSERT INTO productos (nombre, precio, codigo_barras, direccion_imagen, stock) VALUES
 (
-    'Cocacola',
+    'Cocacola Light',
      30.00,
-     2020,
+     7501055305339,
      'src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG',
      200
 ),
