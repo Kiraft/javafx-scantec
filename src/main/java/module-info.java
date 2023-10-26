@@ -4,6 +4,9 @@ module com.example.proyectofinaldb {
 
     requires org.controlsfx.controls;
     requires java.sql;
+    requires itextpdf;
+    requires java.desktop;
+    requires com.google.zxing;
 
     opens com.example.proyectofinaldb to javafx.fxml;
     exports com.example.proyectofinaldb;

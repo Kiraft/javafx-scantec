@@ -1,5 +1,6 @@
 package com.example.proyectofinaldb.controllers;
 
+import com.example.proyectofinaldb.util.BarCodeGenerator;
 import javafx.application.Platform;
 import javafx.scene.control.Alert.AlertType;
 
@@ -8,7 +9,6 @@ import com.example.proyectofinaldb.models.Producto;
 import com.example.proyectofinaldb.util.AlertUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -20,6 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,19 +31,13 @@ public class HomeController {
     private ImageView ImageProduct;
 
     @FXML
-    private Button btnCargarImg;
-
-    @FXML
-    private Label labelPrice;
-
-    @FXML
-    private ImageView imgRegister;
-
-    @FXML
     private Button btnAgregar;
 
     @FXML
     private Button btnBuscar;
+
+    @FXML
+    private Button btnCargarImg;
 
     @FXML
     private Pane contenedorLeerProducto;
@@ -51,10 +46,22 @@ public class HomeController {
     private Pane contenedorRegistrarProducto;
 
     @FXML
+    private Pane contenedorSuccessfulRegister;
+
+    @FXML
+    private ImageView imgCodigoBarras;
+
+    @FXML
+    private ImageView imgRegister;
+
+    @FXML
     private Label labelName;
 
     @FXML
     private Label labelName1;
+
+    @FXML
+    private Label labelPrice;
 
     @FXML
     private Label labelStock;
@@ -75,15 +82,43 @@ public class HomeController {
     private TextField txtStock;
 
     ImplementProducto implementProducto = new ImplementProducto();
+
     @FXML
-    void agregar(ActionEvent event) {
+    void agregar(ActionEvent event) throws FileNotFoundException {
+        String nombreAux = txtNombre.getText() + ".png";
         Producto p = new Producto();
-        p.setNombre(txtNombre.getText());
-        p.setPrecio(Double.parseDouble(txtPrecio.getText()));
-        p.setCodigoBarras(txtCodigoBarras.getText());
-        p.setDireccionImagen("C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG");
-        p.setStock(Long.parseLong(txtStock.getText()));
+            p.setNombre(txtNombre.getText());
+            p.setPrecio(Double.parseDouble(txtPrecio.getText()));
+            p.setCodigoBarras(txtCodigoBarras.getText());
+            p.setDireccionImagen("C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG");
+            p.setStock(Long.parseLong(txtStock.getText()));
+
         implementProducto.guardar(p);
+        BarCodeGenerator.generatorBarCode(txtNombre.getText(), txtCodigoBarras.getText());
+        contenedorRegistrarProducto.setVisible(false);
+        contenedorSuccessfulRegister.setVisible(true);
+
+        Thread hilo = new Thread(() -> {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            Platform.runLater(() -> {
+                Image img = null;
+                try {
+                    img = new Image(new FileInputStream(nombreAux));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                imgCodigoBarras.setImage(img);
+            });
+        });
+
+        hilo.start();
+
+
     }
     @FXML
     void buscar(ActionEvent event) throws FileNotFoundException {
@@ -91,6 +126,7 @@ public class HomeController {
         if (!txtCode.getText().isEmpty()){
 
             if (implementProducto.porCodigoBarras(txtCode.getText()) != null){
+                contenedorSuccessfulRegister.setVisible(false);
                 contenedorRegistrarProducto.setVisible(false);
                 contenedorLeerProducto.setVisible(true);
                 Producto p = implementProducto.porCodigoBarras(txtCode.getText());
@@ -106,6 +142,7 @@ public class HomeController {
                 ImageProduct.setImage(img);
             }else{
                 AlertUtil.showAlert(AlertType.ERROR, "PRODUCTO NO REGISTRADO", "Este producto no se encuentro en la base de datos registrelo");
+                contenedorSuccessfulRegister.setVisible(false);
                 contenedorLeerProducto.setVisible(false);
                 contenedorRegistrarProducto.setVisible(true);
                 txtCodigoBarras.setText(txtCode.getText());
@@ -153,6 +190,7 @@ public class HomeController {
         });
         hiloCargaArchivo.start();
     }
+
 }
 
 
