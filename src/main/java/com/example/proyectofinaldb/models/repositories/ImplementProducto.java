@@ -27,7 +27,7 @@ public class ImplementProducto implements Repository<Producto> {
 
     @Override
     public void guardar(Producto producto) {
-        String sql = "INSERT INTO productos (nombre, precio, codigo_barras, direccion_imagen, stock) VALUES (?, ?, ?, ?, ?),";
+        String sql = "INSERT INTO productos (nombre, precio, codigo_barras, direccion_imagen, stock) VALUES (?, ?, ?, ?, ?);";
 
         try (PreparedStatement stmt = getConnection().prepareStatement(sql) ) {
             stmt.setString(1, producto.getNombre());
@@ -38,7 +38,7 @@ public class ImplementProducto implements Repository<Producto> {
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-
+            e.getMessage();
         }
     }
 

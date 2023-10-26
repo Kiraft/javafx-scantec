@@ -1,5 +1,6 @@
 package com.example.proyectofinaldb.controllers;
 
+import javafx.application.Platform;
 import javafx.scene.control.Alert.AlertType;
 
 import com.example.proyectofinaldb.models.repositories.ImplementProducto;
@@ -16,7 +17,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -26,7 +30,13 @@ public class HomeController {
     private ImageView ImageProduct;
 
     @FXML
-    private Label LabelPrice;
+    private Button btnCargarImg;
+
+    @FXML
+    private Label labelPrice;
+
+    @FXML
+    private ImageView imgRegister;
 
     @FXML
     private Button btnAgregar;
@@ -67,7 +77,13 @@ public class HomeController {
     ImplementProducto implementProducto = new ImplementProducto();
     @FXML
     void agregar(ActionEvent event) {
-
+        Producto p = new Producto();
+        p.setNombre(txtNombre.getText());
+        p.setPrecio(Double.parseDouble(txtPrecio.getText()));
+        p.setCodigoBarras(txtCodigoBarras.getText());
+        p.setDireccionImagen("C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG");
+        p.setStock(Long.parseLong(txtStock.getText()));
+        implementProducto.guardar(p);
     }
     @FXML
     void buscar(ActionEvent event) throws FileNotFoundException {
@@ -75,15 +91,22 @@ public class HomeController {
         if (!txtCode.getText().isEmpty()){
 
             if (implementProducto.porCodigoBarras(txtCode.getText()) != null){
-
+                contenedorRegistrarProducto.setVisible(false);
                 contenedorLeerProducto.setVisible(true);
                 Producto p = implementProducto.porCodigoBarras(txtCode.getText());
 
                 labelName.setText(p.getNombre());
-                LabelPrice.setText(String.valueOf(p.getPrecio()));
+                labelPrice.setText(String.valueOf(p.getPrecio()));
+                labelStock.setText(String.valueOf(p.getStock()));
+
+//                String imagePath = "src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG";
+//                Image img = new Image(getClass().getResourceAsStream(imagePath));
+//                ImageProduct.setImage(img);
                 Image img = new Image(new FileInputStream(p.getDireccionImagen()));
                 ImageProduct.setImage(img);
             }else{
+                AlertUtil.showAlert(AlertType.ERROR, "PRODUCTO NO REGISTRADO", "Este producto no se encuentro en la base de datos registrelo");
+                contenedorLeerProducto.setVisible(false);
                 contenedorRegistrarProducto.setVisible(true);
                 txtCodigoBarras.setText(txtCode.getText());
             }
@@ -103,7 +126,36 @@ public class HomeController {
         }
     }
 
+    @FXML
+    void cargarImg(ActionEvent event) {
+        Thread hiloCargaArchivo = new Thread(() -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Selecciona un archivo");
+            Stage stage = (Stage) btnCargarImg.getScene().getWindow();
 
+            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Archivos de imagen", "*.png", "*.jpg", "*.jpeg");
+            fileChooser.getExtensionFilters().add(extensionFilter);
 
+            Runnable fileChooserRunnable = () -> {
+                File file = fileChooser.showOpenDialog(stage);
+
+                Image img = null;
+                try {
+                    img = new Image(new FileInputStream(file.getAbsolutePath()));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                imgRegister.setImage(img);
+            };
+
+            // Ejecuta el código en el hilo de eventos de JavaFX
+            Platform.runLater(fileChooserRunnable);
+        });
+        hiloCargaArchivo.start();
+    }
 }
+
+
+
+
 
