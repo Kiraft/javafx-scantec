@@ -43,4 +43,11 @@ INSERT INTO productos (nombre, precio, codigo_barras, direccion_imagen, stock) V
     2023,
     'src/main/resources/com/example/proyectofinaldb/assets/laptop.PNG',
     10
+),
+(
+    'Paracetamol',
+    50,
+    7501557140407,
+    'src/main/resources/com/example/proyectofinaldb/assets/paracetamol.PNG',
+    30
 );
