@@ -40,10 +40,19 @@ public class HomeController {
     private Button btnCargarImg;
 
     @FXML
+    private Button btnCargarImgEdit;
+
+    @FXML
     private Button btnEditar;
 
     @FXML
     private Button btnEliminar;
+
+    @FXML
+    private Button btnGuardarEdit;
+
+    @FXML
+    private Pane contenedorEditProducto;
 
     @FXML
     private Pane contenedorLeerProducto;
@@ -56,6 +65,9 @@ public class HomeController {
 
     @FXML
     private ImageView imgCodigoBarras;
+
+    @FXML
+    private ImageView imgEdit;
 
     @FXML
     private ImageView imgRegister;
@@ -73,6 +85,9 @@ public class HomeController {
     private Label labelName1;
 
     @FXML
+    private Label labelName11;
+
+    @FXML
     private Label labelPrice;
 
     @FXML
@@ -88,6 +103,18 @@ public class HomeController {
     private TextField txtCodigoBarras;
 
     @FXML
+    private TextField txtEditCodigo;
+
+    @FXML
+    private TextField txtEditNombre;
+
+    @FXML
+    private TextField txtEditPrecio;
+
+    @FXML
+    private TextField txtEditStock;
+
+    @FXML
     private TextField txtNombre;
 
     @FXML
@@ -97,6 +124,7 @@ public class HomeController {
     private TextField txtStock;
 
     File fileImg = null;
+    File fileimgEdit = null;
 
     ImplementProducto implementProducto = new ImplementProducto();
 
@@ -210,33 +238,7 @@ public class HomeController {
             Runnable fileChooserRunnable = () -> {
                 File file = fileChooser.showOpenDialog(stage);
                 fileImg = file;
-//                if (file != null) {
-//
-//                    // FileSystemView fileSystemView = FileSystemView.getFileSystemView();
-//                    // File carpetaDestino = new File(fileSystemView.getHomeDirectory().getPath() + File.separator + "tramites-tecnm" + File.separator + "docs" + File.separator + nombreAlumno);
-//                    File carpetaDestino = new File("C:/Users/Kiraft/Documents/Workstations/lector-codigo-barras/src/main/resources/com/example/proyectofinaldb/assets/");
-//
-//                    if (!carpetaDestino.exists()) {
-//                        carpetaDestino.mkdirs();
-//                    }
-//
-//                    File Destino = new File(carpetaDestino.getAbsolutePath() + File.separator + file.getName());
-//
-//                    if (file.renameTo(Destino)) {
-//                        labelSubir.setStyle("-fx-background-color: #5CCF52; -fx-text-fill: white;");
-//                        //Query de cargado de archivo
-//                        ARDAO.setArchivo(alumno.getNumeroControl(), Destino.getAbsolutePath(), id_archivo);
-//
-//                        botonSubirArchivo.setDisable(true);
-//                        imageView.setDisable(false);
-//
-//
-//                    } else {
-//                        AlertUtil.showAlert(AlertType.ERROR, "ERROR SUBIDA DE ARHIVO", "Errpr al guardar archivo");
-//                    }
-//
-//
-//                }
+
                 Image img = null;
                 try {
                     img = new Image(new FileInputStream(file.getAbsolutePath()));
@@ -253,11 +255,6 @@ public class HomeController {
     }
 
     @FXML
-    void editar(ActionEvent event) {
-
-    }
-
-    @FXML
     void eliminar(ActionEvent event) {
         implementProducto.eliminarPorCodigoBarras(labelBarCode.getText());
         AlertUtil.showAlert(AlertType.CONFIRMATION, "EXITOSO", "SE A ELIMINADO EL PRODUCTO");
@@ -265,7 +262,79 @@ public class HomeController {
         imgWelcome.setVisible(true);
         labelWelcome.setVisible(true);
     }
+    @FXML
+    void editar(ActionEvent event) {
+//        editNombre = labelName.getText();
+//        editPrecio = labelPrice.getText();
+//        editStock = labelStock.getText();
+//        editCoodigo = labelBarCode.getText();
 
+        contenedorLeerProducto.setVisible(false);
+        contenedorEditProducto.setVisible(true);
+        txtEditNombre.setText(labelName.getText());
+        txtEditPrecio.setText(labelPrice.getText());
+        txtEditStock.setText(labelStock.getText());
+        txtEditCodigo.setText(labelBarCode.getText());
+        imgEdit.setImage(ImageProduct.getImage());
+        idAux = implementProducto.getIdByCodigoBarras(labelBarCode.getText());
+        System.out.println(idAux);
+    }
+
+    int idAux = 0;
+    @FXML
+    void guardar(ActionEvent event) {
+        Long idAuxLong = (long) idAux;
+        System.out.println(idAuxLong);
+        Producto p =  new Producto();
+        p.setNombre(txtEditNombre.getText());
+        p.setPrecio(Double.parseDouble(txtEditPrecio.getText()));
+        p.setCodigoBarras(txtEditCodigo.getText());
+        p.setStock(Long.parseLong(txtEditStock.getText()));
+//        if (fileimgEdit == null){
+//            p.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
+//        }else {
+//            p.setDireccionImagen(fileimgEdit.getAbsolutePath());
+//        }
+        p.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
+        implementProducto.editar(p, idAuxLong);
+
+        contenedorEditProducto.setVisible(false);
+
+    }
+
+    String editNombre;
+    String editPrecio;
+    String editStock;
+    String editCoodigo;
+
+    @FXML
+    void cargarImgEdit(ActionEvent event) {
+        Thread hiloCargaArchivo = new Thread(() -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Selecciona un archivo");
+            Stage stage = (Stage) btnCargarImg.getScene().getWindow();
+
+            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Archivos de imagen", "*.png", "*.jpg", "*.jpeg");
+            fileChooser.getExtensionFilters().add(extensionFilter);
+
+            Runnable fileChooserRunnable = () -> {
+                File file = fileChooser.showOpenDialog(stage);
+                fileimgEdit = file;
+
+                Image img = null;
+                try {
+                    img = new Image(new FileInputStream(file.getAbsolutePath()));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                imgEdit.setImage(img);
+            };
+
+            // Ejecuta el código en el hilo de eventos de JavaFX
+            Platform.runLater(fileChooserRunnable);
+        });
+        hiloCargaArchivo.start();
+    }
 }
 
 

@@ -82,4 +82,38 @@ public class ImplementProducto implements Repository<Producto> {
             e.getMessage();
         }
     }
+
+    public void editar(Producto producto, Long id) {
+
+        String sql = "UPDATE productos SET nombre = ?, precio = ?, codigo_barras = ?, direccion_imagen = ?, stock = ? where id = ?;";
+        System.out.println(id);
+        System.out.println(producto);
+        try (PreparedStatement stmt = getConnection().prepareStatement(sql) ) {
+            stmt.setString(1, producto.getNombre());
+            stmt.setDouble(2, producto.getPrecio());
+            stmt.setString(3, producto.getCodigoBarras());
+            stmt.setString(4, producto.getDireccionImagen());
+            stmt.setLong(5, producto.getStock());
+            stmt.setLong(6, id);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+    }
+
+    public int getIdByCodigoBarras(String code){
+        int id = 0;
+        try (PreparedStatement stmt = getConnection().prepareStatement("SELECT id FROM productos where codigo_barras=?")) {
+            stmt.setString(1, code);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    id = rs.getInt("id");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("No se hizo la lectura");
+        }
+        return id;
+    }
 }
