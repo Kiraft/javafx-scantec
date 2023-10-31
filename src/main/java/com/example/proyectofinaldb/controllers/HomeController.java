@@ -64,6 +64,9 @@ public class HomeController {
     private Pane contenedorSuccessfulRegister;
 
     @FXML
+    private Pane contenedorSuccessfulUpdate;
+
+    @FXML
     private ImageView imgCodigoBarras;
 
     @FXML
@@ -184,6 +187,7 @@ public class HomeController {
     void buscar(ActionEvent event) throws FileNotFoundException {
 
         if (!txtCode.getText().isEmpty()){
+            contenedorSuccessfulUpdate.setVisible(false);
             labelWelcome.setVisible(false);
             imgWelcome.setVisible(false);
             if (implementProducto.porCodigoBarras(txtCode.getText()) != null){
@@ -299,6 +303,7 @@ public class HomeController {
         implementProducto.editar(p, idAuxLong);
 
         contenedorEditProducto.setVisible(false);
+        contenedorSuccessfulUpdate.setVisible(true);
 
     }
 

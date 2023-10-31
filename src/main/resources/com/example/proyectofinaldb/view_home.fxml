@@ -218,12 +218,12 @@
                </padding>
             </Label>
             <TextField fx:id="txtEditStock" layoutX="42.0" layoutY="233.0" prefHeight="36.0" prefWidth="194.0" style="-fx-border-color: #343131; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 1.5;" />
-            <Button fx:id="btnGuardarEdit" layoutX="96.0" layoutY="359.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #343131;" text="Guardar" textFill="WHITE">
+            <Button fx:id="btnGuardarEdit" layoutX="96.0" layoutY="300.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #343131;" text="Guardar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="46.0" layoutY="269.0" text="Codigo de Barras">
+            <Label layoutX="23.0" layoutY="313.0" prefHeight="38.0" prefWidth="50.0" text="Codigo de Barras" visible="false">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -231,13 +231,22 @@
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <TextField fx:id="txtEditCodigo" layoutX="42.0" layoutY="305.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-radius: 5; -fx-border-color: #343131; -fx-border-radius: 5; -fx-border-width: 1.5;" />
+            <TextField fx:id="txtEditCodigo" layoutX="19.0" layoutY="351.0" prefHeight="36.0" prefWidth="98.0" style="-fx-background-radius: 5; -fx-border-color: #343131; -fx-border-radius: 5; -fx-border-width: 1.5;" visible="false" />
             <ImageView fx:id="imgEdit" fitHeight="150.0" fitWidth="200.0" layoutX="313.0" layoutY="122.0" pickOnBounds="true" />
             <Button fx:id="btnCargarImgEdit" layoutX="356.0" layoutY="299.0" mnemonicParsing="false" onAction="#cargarImgEdit" prefHeight="31.0" prefWidth="114.0" style="-fx-background-color: #343131;" text="Cargar Imagen" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="contenedorSuccessfulUpdate" layoutX="63.0" layoutY="160.0" prefHeight="390.0" prefWidth="574.0" style="-fx-border-color: #000000;" visible="false">
+         <children>
+            <Label layoutX="112.0" layoutY="145.0" prefHeight="88.0" prefWidth="350.0" text="Felicidades tu producto ha sido editado exitosamente" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
