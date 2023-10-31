@@ -25,7 +25,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class HomeController {
+public class LectorController {
 
     @FXML
     private ImageView ImageProduct;
@@ -125,6 +125,7 @@ public class HomeController {
 
     @FXML
     private TextField txtStock;
+
 
     File fileImg = null;
     File fileimgEdit = null;
