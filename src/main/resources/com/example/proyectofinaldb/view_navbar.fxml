@@ -8,52 +8,52 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="964.0" prefWidth="1634.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectofinaldb.controllers.NavbarController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="1296.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectofinaldb.controllers.NavbarController">
    <children>
-      <Pane layoutX="-6.0" layoutY="-14.0" prefHeight="980.0" prefWidth="504.0" style="-fx-background-color: #882323;">
+      <Pane layoutX="-6.0" layoutY="-14.0" prefHeight="668.0" prefWidth="293.0" style="-fx-background-color: #882323;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="171.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@assets/img/navbar/icono%20xd%202.png" />
-               </image>
-            </ImageView>
-            <Text fill="WHITE" layoutX="170.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido">
+            <Text fill="WHITE" layoutX="79.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido">
                <font>
-                  <Font size="34.0" />
+                  <Font size="27.0" />
                </font>
             </Text>
-            <Text fx:id="labelNombre" fill="WHITE" layoutX="29.0" layoutY="445.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="CENTER" wrappingWidth="447.6259765625">
+            <Text fx:id="labelNombre" fill="WHITE" layoutX="41.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="CENTER" wrappingWidth="211.0">
                <font>
-                  <Font name="System Bold" size="34.0" />
+                  <Font name="System Bold" size="21.0" />
                </font>
             </Text>
-            <Button fx:id="btnLector" alignment="BOTTOM_RIGHT" layoutX="51.0" layoutY="508.0" mnemonicParsing="false" onAction="#navbarChange" prefHeight="75.0" prefWidth="427.0" style="-fx-background-color: #882323; -fx-font-size: 30; -fx-border-color: #FFFFFF;" text="LECTOR DE BARRAS" textFill="WHITE">
+            <Button fx:id="btnLector" alignment="CENTER_RIGHT" layoutX="42.0" layoutY="357.0" mnemonicParsing="false" onAction="#navbarChange" prefHeight="50.0" prefWidth="211.0" style="-fx-background-color: #882323; -fx-border-color: #FFFFFF;" text="LECTOR DE BARRAS" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="68.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnAlmacen" alignment="BOTTOM_RIGHT" layoutX="49.0" layoutY="619.0" mnemonicParsing="false" onAction="#navbarChange" prefHeight="75.0" prefWidth="427.0" style="-fx-background-color: #882323; -fx-font-size: 30; -fx-border-color: #FFFFFF;" text="ALMACEN" textFill="WHITE">
+            <Button fx:id="btnAlmacen" alignment="CENTER_RIGHT" layoutX="41.0" layoutY="447.0" mnemonicParsing="false" onAction="#navbarChange" prefHeight="50.0" prefWidth="211.0" style="-fx-background-color: #882323; -fx-border-color: #FFFFFF;" text="ALMACEN" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="68.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <ImageView fitHeight="60.0" fitWidth="50.0" layoutX="65.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="28.0" fitWidth="29.0" layoutX="50.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/img/navbar/escaner-icono.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="56.0" fitWidth="60.0" layoutX="56.0" layoutY="629.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="44.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/img/navbar/almacen-icono.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnExit" layoutX="173.0" layoutY="758.0" mnemonicParsing="false" onAction="#exit" prefHeight="69.0" prefWidth="147.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #000000; -fx-font-size: 20; -fx-background-radius: 10; -fx-font-weight: 10;" text="SALIR">
+            <Button fx:id="btnExit" layoutX="93.0" layoutY="549.0" mnemonicParsing="false" onAction="#exit" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: #000000; -fx-background-radius: 10; -fx-font-weight: 10;" text="SALIR">
                <font>
-                  <Font size="45.0" />
+                  <Font size="16.0" />
                </font>
             </Button>
+            <ImageView fitHeight="145.0" fitWidth="132.0" layoutX="82.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/navbar/icono%20xd%202.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <AnchorPane fx:id="containerLeft" layoutX="520.0" layoutY="24.0" prefHeight="898.0" prefWidth="1086.0" style="-fx-background-color: #FFFFFF;" />
+      <AnchorPane fx:id="containerLeft" layoutX="304.0" layoutY="11.0" prefHeight="624.0" prefWidth="981.0" style="-fx-background-color: #FFFFFF;" />
    </children>
 </AnchorPane>

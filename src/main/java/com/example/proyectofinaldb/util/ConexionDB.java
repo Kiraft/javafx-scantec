@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConexionDB {
 
-    private static String url = "jdbc:mysql://localhost:3306/almacen?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static String url = "jdbc:mysql://localhost:3306/almacen2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static String username = "root";
     private static String password = "";
 

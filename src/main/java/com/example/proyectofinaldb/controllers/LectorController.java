@@ -202,9 +202,6 @@ public class LectorController {
                 labelStock.setText(String.valueOf(p.getStock()));
                 labelBarCode.setText(String.valueOf(p.getCodigoBarras()));
 
-//                String imagePath = "src/main/resources/com/example/proyectofinaldb/assets/coca-sin-azucar.PNG";
-//                Image img = new Image(getClass().getResourceAsStream(imagePath));
-//                ImageProduct.setImage(img);
                 Image img = new Image(new FileInputStream(p.getDireccionImagen()));
                 ImageProduct.setImage(img);
             }else{
@@ -269,10 +266,7 @@ public class LectorController {
     }
     @FXML
     void editar(ActionEvent event) {
-//        editNombre = labelName.getText();
-//        editPrecio = labelPrice.getText();
-//        editStock = labelStock.getText();
-//        editCoodigo = labelBarCode.getText();
+
 
         contenedorLeerProducto.setVisible(false);
         contenedorEditProducto.setVisible(true);

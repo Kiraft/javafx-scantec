@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="894.0" style="-fx-background-color: #545354;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectofinaldb.controllers.AlmacenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="981.0" style="-fx-background-color: #545354;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectofinaldb.controllers.AlmacenController">
    <children>
-      <Pane layoutX="21.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #59cedd;">
+      <Pane layoutX="66.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #59cedd;">
          <children>
             <Label layoutX="14.0" layoutY="10.0" text="AVG" textFill="WHITE">
                <font>
@@ -23,7 +23,7 @@
                </font>
             </Label>
          </children></Pane>
-      <Pane layoutX="235.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #dd596f;">
+      <Pane layoutX="280.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #dd596f;">
          <children>
             <Label layoutX="14.0" layoutY="10.0" text="MIN" textFill="WHITE">
                <font>
@@ -36,7 +36,7 @@
                </font>
             </Label>
          </children></Pane>
-      <Pane layoutX="449.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #ddb359;">
+      <Pane layoutX="494.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #ddb359;">
          <children>
             <Label layoutX="9.0" layoutY="7.0" text="MAX" textFill="WHITE">
                <font>
@@ -49,7 +49,7 @@
                </font>
             </Label>
          </children></Pane>
-      <Pane layoutX="664.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #9b59dd;">
+      <Pane layoutX="709.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #9b59dd;">
          <children>
             <Label layoutX="12.0" layoutY="10.0" text="COUNT" textFill="WHITE">
                <font>
@@ -62,37 +62,33 @@
                </font>
             </Label>
          </children></Pane>
-      <Pane layoutX="20.0" layoutY="114.0" prefHeight="457.0" prefWidth="634.0" style="-fx-border-color: #8754cb; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-color: #545354; -fx-background-radius: 10;">
+      <Pane layoutX="15.0" layoutY="186.0" prefHeight="430.0" prefWidth="952.0" style="-fx-border-color: #8754cb; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-color: #545354; -fx-background-radius: 10;">
          <children>
-            <TableView layoutX="27.0" layoutY="27.0" prefHeight="404.0" prefWidth="584.0">
+            <TableView fx:id="tableAlmacen" editable="true" layoutX="19.0" layoutY="20.0" prefHeight="398.0" prefWidth="917.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn prefWidth="90.0" text="C1" />
-                <TableColumn prefWidth="81.0" text="C2" />
-                  <TableColumn prefWidth="74.0" text="Column X" />
-                  <TableColumn prefWidth="79.0" text="Column X" />
+                <TableColumn fx:id="tableColId" prefWidth="108.66667175292969" resizable="false" text="Id" />
+                <TableColumn fx:id="tableColNombre" prefWidth="108.33334350585938" text="Nombre" />
+                  <TableColumn fx:id="tableColCategoria" text="Categoria" />
+                  <TableColumn fx:id="tableColEstado" prefWidth="76.0" text="Estado" />
+                  <TableColumn fx:id="tableColCantidad" prefWidth="89.0" text="Cantidad" />
+                  <TableColumn fx:id="tableColFecha" prefWidth="109.0" text="Fecha Adquisicion" />
+                  <TableColumn fx:id="tableColProveedor" prefWidth="140.3333740234375" text="Proveedor" />
               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
          </children>
       </Pane>
-      <Pane layoutX="667.0" layoutY="114.0" prefHeight="125.0" prefWidth="216.0" style="-fx-border-color: #8754cb; -fx-border-width: 2;">
-         <children>
-            <ComboBox layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="196.0" promptText="Empleados" />
-            <ComboBox layoutX="14.0" layoutY="84.0" prefHeight="25.0" prefWidth="196.0" />
-            <Label layoutX="14.0" layoutY="67.0" text="Ordenar por" textFill="WHITE" />
-            <Label layoutX="14.0" layoutY="14.0" text="Tabla" textFill="WHITE" />
-         </children>
-      </Pane>
-      <Pane layoutX="667.0" layoutY="250.0" prefHeight="214.0" prefWidth="216.0" style="-fx-border-color: #8754cb; -fx-border-width: 2;">
-         <children>
-            <ComboBox layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="196.0" />
-            <Label layoutX="14.0" layoutY="14.0" text="Columna AVG" textFill="WHITE" />
-            <ComboBox layoutX="14.0" layoutY="77.0" prefHeight="25.0" prefWidth="196.0" />
-            <Label layoutX="14.0" layoutY="60.0" text="Columna MIN" textFill="WHITE" />
-            <ComboBox layoutX="14.0" layoutY="124.0" prefHeight="25.0" prefWidth="196.0" />
-            <Label layoutX="14.0" layoutY="107.0" text="Columna MAX" textFill="WHITE" />
-            <ComboBox layoutX="14.0" layoutY="173.0" prefHeight="25.0" prefWidth="196.0" />
-            <Label layoutX="14.0" layoutY="156.0" text="Columna COUNT" textFill="WHITE" />
-         </children>
-      </Pane>
+      <ComboBox disable="true" layoutX="33.0" layoutY="157.0" prefHeight="25.0" prefWidth="196.0" visible="false" />
+      <Label disable="true" layoutX="33.0" layoutY="140.0" text="Ordenar por" textFill="WHITE" visible="false" />
+      <ComboBox layoutX="64.0" layoutY="141.0" prefHeight="25.0" prefWidth="196.0" />
+      <Label layoutX="64.0" layoutY="124.0" text="Columna AVG" textFill="WHITE" />
+      <ComboBox layoutX="280.0" layoutY="140.0" prefHeight="25.0" prefWidth="196.0" />
+      <Label layoutX="280.0" layoutY="123.0" text="Columna MIN" textFill="WHITE" />
+      <ComboBox layoutX="498.0" layoutY="139.0" prefHeight="25.0" prefWidth="196.0" />
+      <Label layoutX="498.0" layoutY="122.0" text="Columna MAX" textFill="WHITE" />
+      <ComboBox layoutX="723.0" layoutY="139.0" prefHeight="25.0" prefWidth="196.0" />
+      <Label layoutX="723.0" layoutY="122.0" text="Columna COUNT" textFill="WHITE" />
    </children>
 </AnchorPane>

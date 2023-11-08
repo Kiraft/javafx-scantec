@@ -50,6 +50,7 @@ CREATE TABLE articulos (
     fecha_adquisicion DATE,
     proveedor VARCHAR(100),
     observaciones TEXT,
+    img VARCHAR(255),
     FOREIGN KEY (id_ubicacion) REFERENCES ubicacion(id),
     FOREIGN KEY (id_inventario) REFERENCES inventario(id),
     FOREIGN KEY (id_ingreso) REFERENCES ingreso(id)
@@ -99,13 +100,13 @@ VALUES
 ('Javier Rodríguez', 'Calle Larga 101', '555-7890', 'javier@email.com', 'Frecuente'),
 ('Sofía Martínez', 'Avenida Sur 333', '555-1357', 'sofia@email.com', 'Cliente VIP');
 
-INSERT INTO articulos (id_ubicacion, id_inventario, id_ingreso, nombre_articulo, descripcion, categoria, estado_articulo, cantidad, fecha_adquisicion, proveedor, observaciones)
+INSERT INTO articulos (id, id_ubicacion, id_inventario, id_ingreso, nombre_articulo, descripcion, categoria, estado_articulo, cantidad, fecha_adquisicion, proveedor, observaciones, img)
 VALUES
-(1, 1, 1, 'Limpiador multiusos', 'Elimina la suciedad y desinfecta.', 'Limpieza', 'Disponible', 100, '2023-05-10', 'Proveedor X', 'Sin observaciones'),
-(3, 2, 2, 'Medicamento A', 'Alivia dolores leves.', 'Medicina', 'Agotado', 50, '2023-07-25', 'Farmacia Y', 'Caducado'),
-(4, 3, 3, 'Martillo', 'Herramienta para golpear.', 'Herramientas', 'Disponible', 20, '2023-09-01', 'Ferretería Z', 'Nuevo artículo'),
-(2, 4, 4, 'Refrigerador', 'Electrodoméstico para conservar alimentos.', 'Electrodomésticos', 'Disponible', 5, '2023-06-15', 'Tienda Electro', 'Sin observaciones'),
-(5, 5, 5, 'Camiseta', 'Prenda de vestir.', 'Ropa', 'Disponible', 30, '2023-10-02', 'Tienda Moda', 'Varios colores disponibles');
+(1, 1, 1, 1, 'Limpiador multiusos', 'Elimina la suciedad y desinfecta.', 'Limpieza', 'Disponible', 100, '2023-05-10', 'Proveedor X', 'Sin observaciones', 'src/main/resources/com/example/proyectofinaldb/assets/img/articulos/limpiador-multiusos.PNG'),
+(2, 3, 2, 2, 'Medicamento A', 'Alivia dolores leves.', 'Medicina', 'Agotado', 50, '2023-07-25', 'Farmacia Y', 'Caducado', 'src/main/resources/com/example/proyectofinaldb/assets/img/articulos/paracetamol.PNG'),
+(3, 4, 3, 3, 'Martillo', 'Herramienta para golpear.', 'Herramientas', 'Disponible', 20, '2023-09-01', 'Ferreteria Z', 'Nuevo artículo', 'src/main/resources/com/example/proyectofinaldb/assets/img/articulos/martillo.PNG'),
+(4, 2, 4, 4, 'Refrigerador', 'Electrodoméstico para conservar alimentos.', 'Electrodomesticos', 'Disponible', 5, '2023-06-15', 'Tienda Electro', 'Sin observaciones', 'src/main/resources/com/example/proyectofinaldb/assets/img/articulos/refrijerador.PNG'),
+(5, 5, 5, 5, 'Camiseta', 'Prenda de vestir.', 'Ropa', 'Disponible', 30, '2023-10-02', 'Tienda Moda', 'Varios colores disponibles', 'src/main/resources/com/example/proyectofinaldb/assets/img/articulos/camiseta.PNG');
 
 INSERT INTO prestamos (estado_prestamo, fecha_prestamo, fecha_devolucion, observaciones_adicionales, id_solicitante, id_articulo)
 VALUES
