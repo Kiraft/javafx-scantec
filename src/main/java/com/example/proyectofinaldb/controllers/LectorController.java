@@ -1,5 +1,6 @@
 package com.example.proyectofinaldb.controllers;
 
+import com.example.proyectofinaldb.models.Articulo;
 import com.example.proyectofinaldb.util.BarCodeGenerator;
 import javafx.application.Platform;
 import javafx.scene.control.Alert.AlertType;
@@ -10,6 +11,7 @@ import com.example.proyectofinaldb.util.AlertUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,6 +26,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class LectorController {
 
@@ -67,6 +72,9 @@ public class LectorController {
     private Pane contenedorSuccessfulUpdate;
 
     @FXML
+    private DatePicker datePicker;
+
+    @FXML
     private ImageView imgCodigoBarras;
 
     @FXML
@@ -106,6 +114,9 @@ public class LectorController {
     private TextField txtCodigoBarras;
 
     @FXML
+    private TextField txtDescripcion;
+
+    @FXML
     private TextField txtEditCodigo;
 
     @FXML
@@ -135,19 +146,27 @@ public class LectorController {
     @FXML
     void agregar(ActionEvent event) throws FileNotFoundException {
         String nombreAux = txtNombre.getText() + ".png";
-        Producto p = new Producto();
-            p.setNombre(txtNombre.getText());
-            p.setPrecio(Double.parseDouble(txtPrecio.getText()));
-            p.setCodigoBarras(txtCodigoBarras.getText());
+        Articulo a = new Articulo();
+            a.setNombre(txtNombre.getText());
+            a.setPrecio(Double.parseDouble(txtPrecio.getText()));
+            a.setCodigoBarras(txtCodigoBarras.getText());
            if (fileImg == null){
-               p.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
+               a.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
            }else {
-               p.setDireccionImagen(fileImg.getAbsolutePath());
+               a.setDireccionImagen(fileImg.getAbsolutePath());
            }
-            p.setStock(Long.parseLong(txtStock.getText()));
+           a.setCantidad(Integer.parseInt(txtStock.getText()));
+           a.setDescripcion(txtDescripcion.getText());
+            LocalDate selectedDate = datePicker.getValue();
+            if (selectedDate != null) {
+                Date date = java.sql.Date.valueOf(selectedDate);
+                a.setFecha_adquisicion(date);
+            }
 
 
-        implementProducto.guardar(p);
+
+        implementProducto.guardar(a);
+
         BarCodeGenerator.generatorBarCode(txtNombre.getText(), txtCodigoBarras.getText());
         contenedorRegistrarProducto.setVisible(false);
         contenedorSuccessfulRegister.setVisible(true);
@@ -177,12 +196,6 @@ public class LectorController {
 
     }
 
-    private void clearFields() {
-        txtNombre.clear();
-        txtCodigoBarras.clear();
-        txtPrecio.clear();
-        txtStock.clear();
-    }
 
     @FXML
     void buscar(ActionEvent event) throws FileNotFoundException {
@@ -195,14 +208,14 @@ public class LectorController {
                 contenedorSuccessfulRegister.setVisible(false);
                 contenedorRegistrarProducto.setVisible(false);
                 contenedorLeerProducto.setVisible(true);
-                Producto p = implementProducto.porCodigoBarras(txtCode.getText());
+                Articulo a = implementProducto.porCodigoBarras(txtCode.getText());
 
-                labelName.setText(p.getNombre());
-                labelPrice.setText(String.valueOf(p.getPrecio()));
-                labelStock.setText(String.valueOf(p.getStock()));
-                labelBarCode.setText(String.valueOf(p.getCodigoBarras()));
+                labelName.setText(a.getNombre());
+                labelPrice.setText(String.valueOf(a.getPrecio()));
+                labelStock.setText(String.valueOf(a.getCantidad()));
+                labelBarCode.setText(String.valueOf(a.getCodigoBarras()));
 
-                Image img = new Image(new FileInputStream(p.getDireccionImagen()));
+                Image img = new Image(new FileInputStream(a.getDireccionImagen()));
                 ImageProduct.setImage(img);
             }else{
                 AlertUtil.showAlert(AlertType.ERROR, "PRODUCTO NO REGISTRADO", "Este producto no se encuentro en la base de datos registrelo");
@@ -334,6 +347,13 @@ public class LectorController {
             Platform.runLater(fileChooserRunnable);
         });
         hiloCargaArchivo.start();
+    }
+
+    private void clearFields() {
+        txtNombre.clear();
+        txtCodigoBarras.clear();
+        txtPrecio.clear();
+        txtStock.clear();
     }
 }
 

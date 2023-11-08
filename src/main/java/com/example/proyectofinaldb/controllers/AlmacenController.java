@@ -1,7 +1,7 @@
 package com.example.proyectofinaldb.controllers;
 
 import com.example.proyectofinaldb.models.Articulo;
-import com.example.proyectofinaldb.models.repositories.ImplementArticulo;
+import com.example.proyectofinaldb.models.repositories.ImplementProducto;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,13 +39,13 @@ public class AlmacenController implements Initializable {
     @FXML
     private TableColumn<Articulo, String> tableColProveedor;
 
-    ImplementArticulo ia = new ImplementArticulo();
+    ImplementProducto ia = new ImplementProducto();
 
     private ObservableList<Articulo> inventoryListData;
     public void inventoryShowDate(){
         inventoryListData = ia.listarFX();
 
-        tableColId.setCellValueFactory( new PropertyValueFactory<>("id"));
+        tableColId.setCellValueFactory( new PropertyValueFactory<>("CodigoBarras"));
         tableColNombre.setCellValueFactory( new PropertyValueFactory<>("nombre"));
         tableColCategoria.setCellValueFactory( new PropertyValueFactory<>("categoria"));
         tableColEstado.setCellValueFactory( new PropertyValueFactory<>("estado"));

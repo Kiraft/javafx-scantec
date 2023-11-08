@@ -10,19 +10,11 @@ public class Articulo {
     Integer cantidad;
     Date fecha_adquisicion;
     String proveedor;
+    String direccionImagen;
+    String CodigoBarras;
+    Double precio;
 
-    public Articulo() {
-    }
-
-    public Articulo(Integer id, String nombre, String categoria, String estado, Integer cantidad, Date fecha_adquisicion, String proveedor) {
-        this.id = id;
-        this.nombre = nombre;
-        this.categoria = categoria;
-        this.estado = estado;
-        this.cantidad = cantidad;
-        this.fecha_adquisicion = fecha_adquisicion;
-        this.proveedor = proveedor;
-    }
+    String descripcion;
 
     public Integer getId() {
         return id;
@@ -80,16 +72,35 @@ public class Articulo {
         this.proveedor = proveedor;
     }
 
-    @Override
-    public String toString() {
-        return "Articulo{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", estado='" + estado + '\'' +
-                ", cantidad=" + cantidad +
-                ", fecha_adquisicion=" + fecha_adquisicion +
-                ", proveedor='" + proveedor + '\'' +
-                '}';
+    public String getDireccionImagen() {
+        return direccionImagen;
+    }
+
+    public void setDireccionImagen(String direccionImagen) {
+        this.direccionImagen = direccionImagen;
+    }
+
+    public String getCodigoBarras() {
+        return CodigoBarras;
+    }
+
+    public void setCodigoBarras(String codigoBarras) {
+        CodigoBarras = codigoBarras;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
