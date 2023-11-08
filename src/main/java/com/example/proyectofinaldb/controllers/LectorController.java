@@ -99,6 +99,9 @@ public class LectorController {
     private Label labelName11;
 
     @FXML
+    private Label labelName12;
+
+    @FXML
     private Label labelPrice;
 
     @FXML
@@ -106,6 +109,9 @@ public class LectorController {
 
     @FXML
     private Label labelWelcome;
+
+    @FXML
+    private TextField txtCategoria;
 
     @FXML
     private TextField txtCode;
@@ -117,13 +123,25 @@ public class LectorController {
     private TextField txtDescripcion;
 
     @FXML
+    private TextField txtEditCategoria;
+
+    @FXML
     private TextField txtEditCodigo;
+
+    @FXML
+    private TextField txtEditDescripcion;
+
+    @FXML
+    private TextField txtEditEstado;
 
     @FXML
     private TextField txtEditNombre;
 
     @FXML
     private TextField txtEditPrecio;
+
+    @FXML
+    private TextField txtEditProveedor;
 
     @FXML
     private TextField txtEditStock;
@@ -133,6 +151,9 @@ public class LectorController {
 
     @FXML
     private TextField txtPrecio;
+
+    @FXML
+    private TextField txtProveedor;
 
     @FXML
     private TextField txtStock;
@@ -162,6 +183,8 @@ public class LectorController {
                 Date date = java.sql.Date.valueOf(selectedDate);
                 a.setFecha_adquisicion(date);
             }
+            a.setProveedor(txtProveedor.getText());
+            a.setCategoria(txtCategoria.getText());
 
 
 
@@ -201,6 +224,7 @@ public class LectorController {
     void buscar(ActionEvent event) throws FileNotFoundException {
 
         if (!txtCode.getText().isEmpty()){
+            contenedorEditProducto.setVisible(false);
             contenedorSuccessfulUpdate.setVisible(false);
             labelWelcome.setVisible(false);
             imgWelcome.setVisible(false);
@@ -283,32 +307,44 @@ public class LectorController {
 
         contenedorLeerProducto.setVisible(false);
         contenedorEditProducto.setVisible(true);
-        txtEditNombre.setText(labelName.getText());
-        txtEditPrecio.setText(labelPrice.getText());
-        txtEditStock.setText(labelStock.getText());
-        txtEditCodigo.setText(labelBarCode.getText());
+
+        Articulo a = implementProducto.porCodigoBarras(labelBarCode.getText());
+
+        txtEditNombre.setText(a.getNombre());
+        txtEditPrecio.setText((a.getPrecio()).toString());
+        txtEditStock.setText((a.getCantidad()).toString());
+        txtEditCodigo.setText(a.getCodigoBarras());
         imgEdit.setImage(ImageProduct.getImage());
-        idAux = implementProducto.getIdByCodigoBarras(labelBarCode.getText());
+        txtEditCategoria.setText(a.getCategoria());
+        txtEditDescripcion.setText(a.getDescripcion());
+        txtEditEstado.setText(a.getEstado());
+        txtEditProveedor.setText(a.getProveedor());
+
+        idAux = a.getId();
         System.out.println(idAux);
     }
 
     int idAux = 0;
     @FXML
     void guardar(ActionEvent event) {
-        Long idAuxLong = (long) idAux;
-        System.out.println(idAuxLong);
-        Producto p =  new Producto();
-        p.setNombre(txtEditNombre.getText());
-        p.setPrecio(Double.parseDouble(txtEditPrecio.getText()));
-        p.setCodigoBarras(txtEditCodigo.getText());
-        p.setStock(Long.parseLong(txtEditStock.getText()));
+        Integer idAuxLong = idAux;
+
+        Articulo a =  new Articulo();
+        a.setNombre(txtEditNombre.getText());
+        a.setPrecio(Double.parseDouble(txtEditPrecio.getText()));
+        a.setCantidad(Integer.parseInt(txtEditStock.getText()));
+        a.setProveedor(txtEditProveedor.getText());
+        a.setEstado(txtEditEstado.getText());
+        a.setCategoria(txtEditCategoria.getText());
+        a.setDescripcion(txtEditDescripcion.getText());
 //        if (fileimgEdit == null){
 //            p.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
 //        }else {
 //            p.setDireccionImagen(fileimgEdit.getAbsolutePath());
 //        }
-        p.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
-        implementProducto.editar(p, idAuxLong);
+        a.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
+
+        implementProducto.editar(a, idAuxLong);
 
         contenedorEditProducto.setVisible(false);
         contenedorSuccessfulUpdate.setVisible(true);

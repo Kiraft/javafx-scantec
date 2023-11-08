@@ -8,63 +8,63 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="981.0" style="-fx-background-color: #545354;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectofinaldb.controllers.AlmacenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="981.0" style="-fx-background-color: #343131;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectofinaldb.controllers.AlmacenController">
    <children>
-      <Pane layoutX="66.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #59cedd;">
+      <Pane layoutX="24.0" layoutY="35.0" prefHeight="105.0" prefWidth="226.0" style="-fx-background-color: #59cedd;">
          <children>
             <Label layoutX="14.0" layoutY="10.0" text="AVG" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="40.0" text="Valor" textFill="WHITE">
+            <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="40.0" prefHeight="57.0" prefWidth="206.0" text="Valor" textFill="WHITE" wrapText="true">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
          </children></Pane>
-      <Pane layoutX="280.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #dd596f;">
+      <Pane layoutX="257.0" layoutY="35.0" prefHeight="105.0" prefWidth="226.0" style="-fx-background-color: #dd596f;">
          <children>
-            <Label layoutX="14.0" layoutY="10.0" text="MIN" textFill="WHITE">
+            <Label layoutX="14.0" layoutY="10.0" text="Menos Existencias" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="40.0" text="Valor" textFill="WHITE">
+            <Label fx:id="labelMenosExistencias" alignment="TOP_LEFT" layoutX="14.0" layoutY="40.0" prefHeight="63.0" prefWidth="206.0" text="Valor" textFill="WHITE" wrapText="true">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
          </children></Pane>
-      <Pane layoutX="494.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #ddb359;">
+      <Pane layoutX="497.0" layoutY="35.0" prefHeight="105.0" prefWidth="226.0" style="-fx-background-color: #ddb359;">
          <children>
-            <Label layoutX="9.0" layoutY="7.0" text="MAX" textFill="WHITE">
+            <Label fx:id="labelMayorExistencias" layoutX="9.0" layoutY="7.0" text="Mayor Existencias" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="7.0" layoutY="40.0" text="Valor" textFill="WHITE">
+            <Label fx:id="labelMayorExistencias" alignment="TOP_LEFT" layoutX="7.0" layoutY="40.0" prefHeight="57.0" prefWidth="206.0" text="Valor" textFill="WHITE" wrapText="true">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
          </children></Pane>
-      <Pane layoutX="709.0" layoutY="14.0" prefHeight="80.0" prefWidth="206.0" style="-fx-background-color: #9b59dd;">
+      <Pane layoutX="731.0" layoutY="35.0" prefHeight="105.0" prefWidth="227.0" style="-fx-background-color: #9b59dd;">
          <children>
-            <Label layoutX="12.0" layoutY="10.0" text="COUNT" textFill="WHITE">
+            <Label layoutX="12.0" layoutY="10.0" text="Total Articulos" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="12.0" layoutY="40.0" text="Valor" textFill="WHITE">
+            <Label fx:id="labelTotalArticulos" alignment="TOP_LEFT" layoutX="12.0" layoutY="40.0" prefHeight="50.0" prefWidth="206.0" text="Valor" textFill="WHITE" wrapText="true">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
          </children></Pane>
-      <Pane layoutX="15.0" layoutY="186.0" prefHeight="430.0" prefWidth="952.0" style="-fx-border-color: #8754cb; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-color: #545354; -fx-background-radius: 10;">
+      <Pane layoutX="15.0" layoutY="157.0" prefHeight="452.0" prefWidth="952.0" style="-fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10;">
          <children>
-            <TableView fx:id="tableAlmacen" editable="true" layoutX="19.0" layoutY="20.0" prefHeight="398.0" prefWidth="917.0" tableMenuButtonVisible="true">
+            <TableView fx:id="tableAlmacen" editable="true" layoutX="19.0" layoutY="20.0" prefHeight="412.0" prefWidth="917.0" tableMenuButtonVisible="true">
               <columns>
                 <TableColumn fx:id="tableColId" prefWidth="108.66667175292969" resizable="false" text="Id" />
                 <TableColumn fx:id="tableColNombre" prefWidth="108.33334350585938" text="Nombre" />
@@ -82,13 +82,5 @@
       </Pane>
       <ComboBox disable="true" layoutX="33.0" layoutY="157.0" prefHeight="25.0" prefWidth="196.0" visible="false" />
       <Label disable="true" layoutX="33.0" layoutY="140.0" text="Ordenar por" textFill="WHITE" visible="false" />
-      <ComboBox layoutX="64.0" layoutY="141.0" prefHeight="25.0" prefWidth="196.0" />
-      <Label layoutX="64.0" layoutY="124.0" text="Columna AVG" textFill="WHITE" />
-      <ComboBox layoutX="280.0" layoutY="140.0" prefHeight="25.0" prefWidth="196.0" />
-      <Label layoutX="280.0" layoutY="123.0" text="Columna MIN" textFill="WHITE" />
-      <ComboBox layoutX="498.0" layoutY="139.0" prefHeight="25.0" prefWidth="196.0" />
-      <Label layoutX="498.0" layoutY="122.0" text="Columna MAX" textFill="WHITE" />
-      <ComboBox layoutX="723.0" layoutY="139.0" prefHeight="25.0" prefWidth="196.0" />
-      <Label layoutX="723.0" layoutY="122.0" text="Columna COUNT" textFill="WHITE" />
    </children>
 </AnchorPane>

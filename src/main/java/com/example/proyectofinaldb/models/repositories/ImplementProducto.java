@@ -93,38 +93,26 @@ public class ImplementProducto implements Repository<Articulo> {
         }
     }
 
-    public void editar(Producto producto, Long id) {
+    public void editar(Articulo articulo, Integer id) {
 
-        String sql = "UPDATE productos SET nombre = ?, precio = ?, codigo_barras = ?, direccion_imagen = ?, stock = ? where id = ?;";
-        System.out.println(id);
-        System.out.println(producto);
+        String sql = "UPDATE articulos SET nombre_articulo = ?, categoria = ?, precio = ?, direccion_imagen = ?, cantidad = ?, proveedor = ?, estado_articulo = ?, descripcion = ?  WHERE id = ?;";
+//        System.out.println(id);
+//        System.out.println(producto);
         try (PreparedStatement stmt = getConnection().prepareStatement(sql) ) {
-            stmt.setString(1, producto.getNombre());
-            stmt.setDouble(2, producto.getPrecio());
-            stmt.setString(3, producto.getCodigoBarras());
-            stmt.setString(4, producto.getDireccionImagen());
-            stmt.setLong(5, producto.getStock());
-            stmt.setLong(6, id);
+            stmt.setString(1, articulo.getNombre());
+            stmt.setString(2, articulo.getCategoria());
+            stmt.setDouble(3, articulo.getPrecio());
+            stmt.setString(4, articulo.getDireccionImagen());
+            stmt.setInt(5, articulo.getCantidad());
+            stmt.setString(6, articulo.getProveedor());
+            stmt.setString(7, articulo.getEstado());
+            stmt.setString(8, articulo.getDescripcion());
+            stmt.setInt(9, id);
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
-    }
-
-    public int getIdByCodigoBarras(String code){
-        int id = 0;
-        try (PreparedStatement stmt = getConnection().prepareStatement("SELECT id FROM productos where codigo_barras=?")) {
-            stmt.setString(1, code);
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    id = rs.getInt("id");
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("No se hizo la lectura");
-        }
-        return id;
     }
 
     public ObservableList<Articulo> listarFX() {
@@ -153,5 +141,61 @@ public class ImplementProducto implements Repository<Articulo> {
         }
 
         return articulos;
+    }
+
+    public int getTotal(){
+        int total = 0;
+
+        try (Statement stmt = getConnection().createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT COUNT(id) AS total FROM articulos")) {
+
+            if (rs.next()) {
+                total = rs.getInt("total");
+            }
+
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+        return total;
+    }
+
+    public String getMenosStok(){
+        int total = 0;
+        String articulo = "NINGUNO";
+
+        try (Statement stmt = getConnection().createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT nombre_articulo, MIN(cantidad) AS total FROM articulos")) {
+
+            if (rs.next()) {
+                total = rs.getInt("total");
+                articulo = rs.getString("nombre_articulo");
+            }
+
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+
+
+        return articulo + " " + total;
+    }
+
+    public String getMayorStok(){
+        int total = 0;
+        String articulo = "NINGUNO";
+
+        try (Statement stmt = getConnection().createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT nombre_articulo, MAX(cantidad) AS total FROM articulos")) {
+
+            if (rs.next()) {
+                total = rs.getInt("total");
+                articulo = rs.getString("nombre_articulo");
+            }
+
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+
+
+        return articulo + " " + total;
     }
 }

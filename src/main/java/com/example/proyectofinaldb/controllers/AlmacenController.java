@@ -5,6 +5,7 @@ import com.example.proyectofinaldb.models.repositories.ImplementProducto;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,6 +15,16 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AlmacenController implements Initializable {
+
+
+    @FXML
+    private Label labelMayorExistencias;
+
+    @FXML
+    private Label labelMenosExistencias;
+
+    @FXML
+    private Label labelTotalArticulos;
 
     @FXML
     private TableView<Articulo> tableAlmacen;
@@ -54,6 +65,11 @@ public class AlmacenController implements Initializable {
         tableColProveedor.setCellValueFactory( new PropertyValueFactory<>("proveedor"));
 
         tableAlmacen.setItems(inventoryListData);
+        labelTotalArticulos.setText(String.valueOf(ia.getTotal()));
+        labelMenosExistencias.setText(ia.getMenosStok());
+        labelMayorExistencias.setText(ia.getMayorStok());
+
+
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
