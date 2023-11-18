@@ -164,7 +164,7 @@ public class ImplementProducto implements Repository<Articulo> {
         String articulo = "NINGUNO";
 
         try (Statement stmt = getConnection().createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT nombre_articulo, MIN(cantidad) AS total FROM articulos")) {
+             ResultSet rs = stmt.executeQuery("SELECT nombre_articulo, MIN(cantidad) as total FROM articulos WHERE cantidad = (SELECT MIN(cantidad) FROM articulos)")) {
 
             if (rs.next()) {
                 total = rs.getInt("total");
@@ -184,7 +184,7 @@ public class ImplementProducto implements Repository<Articulo> {
         String articulo = "NINGUNO";
 
         try (Statement stmt = getConnection().createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT nombre_articulo, MAX(cantidad) AS total FROM articulos")) {
+             ResultSet rs = stmt.executeQuery("SELECT nombre_articulo, MAX(cantidad) as total FROM articulos WHERE cantidad = (SELECT MAX(cantidad) FROM articulos)")) {
 
             if (rs.next()) {
                 total = rs.getInt("total");
