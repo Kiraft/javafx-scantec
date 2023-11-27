@@ -60,10 +60,19 @@ public class LectorController implements Initializable {
     private Button btnGuardarEdit;
 
     @FXML
+    private Button btnNo;
+
+    @FXML
+    private Button btnSi;
+
+    @FXML
     private Pane contenedorEditProducto;
 
     @FXML
     private Pane contenedorLeerProducto;
+
+    @FXML
+    private Pane contenedorNotProductRegister;
 
     @FXML
     private Pane contenedorRegistrarProducto;
@@ -96,13 +105,7 @@ public class LectorController implements Initializable {
     private Label labelName;
 
     @FXML
-    private Label labelName1;
-
-    @FXML
     private Label labelName11;
-
-    @FXML
-    private Label labelName12;
 
     @FXML
     private Label labelPrice;
@@ -255,6 +258,7 @@ public class LectorController implements Initializable {
                 contenedorLeerProducto.setVisible(false);
                 contenedorRegistrarProducto.setVisible(true);
                 txtCodigoBarras.setText(txtCode.getText());
+//                contenedorNotProductRegister.setVisible(true);
             }
 
         }else{

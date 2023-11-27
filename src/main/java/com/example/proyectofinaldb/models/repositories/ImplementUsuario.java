@@ -70,7 +70,7 @@ public class ImplementUsuario implements Repository<Usuario> {
                     u.setId(rs.getLong("id"));
                     u.setUser(rs.getString("user"));
                     u.setPassword(rs.getString("password"));
-                    u.setRole(rs.getString("role"));
+                    u.setRole(rs.getString("rol"));
                 }
             }
         } catch (SQLException e) {

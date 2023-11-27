@@ -51,12 +51,12 @@ public class NavbarController implements Initializable {
         switch (source.getId()) {
             case "btnLector":
 
-                FXMLLoader homeLoader = new FXMLLoader(App.class.getResource("view_lector.fxml"));
+                FXMLLoader lectorLoader = new FXMLLoader(App.class.getResource("view_lector.fxml"));
 
                 try {
-                    Parent homeRoot = homeLoader.load();
-                    LectorController homeController = homeLoader.getController();
-                    homeController.setUsuario(usuario);
+                    Parent homeRoot = lectorLoader.load();
+                    LectorController lectorController = lectorLoader.getController();
+                    lectorController.setUsuario(usuario);
                     containerLeft.getChildren().clear();
                     containerLeft.getChildren().add(homeRoot);
                 } catch (IOException e) {
@@ -96,12 +96,15 @@ public class NavbarController implements Initializable {
 
             Platform.runLater(() -> {
 
-                FXMLLoader homeLoader = new FXMLLoader(App.class.getResource("view_lector.fxml"));
+                FXMLLoader lectorLoader = new FXMLLoader(App.class.getResource("view_lector.fxml"));
 
                 try {
-                    Parent homeRoot = homeLoader.load();
+                    Parent homeRoot = lectorLoader.load();
+                    LectorController lectorController = lectorLoader.getController();
+                    lectorController.setUsuario(usuario);
                     containerLeft.getChildren().clear();
                     containerLeft.getChildren().add(homeRoot);
+                    labelNombre.setText(usuario.getRole());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
