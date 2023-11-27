@@ -53,9 +53,9 @@
          <children>
             <TableView fx:id="tableAlmacen" layoutX="19.0" layoutY="20.0" prefHeight="412.0" prefWidth="917.0">
               <columns>
-                <TableColumn fx:id="tableColId" prefWidth="300.0" resizable="false" text="Id" />
-                <TableColumn fx:id="tableColNombre" minWidth="0.0" prefWidth="121.0" resizable="false" text="Nombre" />
-                  <TableColumn fx:id="tableColCategoria" minWidth="0.0" prefWidth="82.0" resizable="false" text="Categoria" />
+                <TableColumn fx:id="tableColId" prefWidth="196.0" resizable="false" text="Id" />
+                <TableColumn fx:id="tableColNombre" minWidth="0.0" prefWidth="198.0" resizable="false" text="Nombre" />
+                  <TableColumn fx:id="tableColCategoria" minWidth="0.0" prefWidth="109.0" resizable="false" text="Categoria" />
                   <TableColumn fx:id="tableColEstado" minWidth="1.0" prefWidth="66.0" resizable="false" text="Estado" />
                   <TableColumn fx:id="tableColCantidad" prefWidth="89.0" resizable="false" text="Cantidad" />
                   <TableColumn fx:id="tableColFecha" prefWidth="109.0" resizable="false" text="Fecha Adquisicion" />
