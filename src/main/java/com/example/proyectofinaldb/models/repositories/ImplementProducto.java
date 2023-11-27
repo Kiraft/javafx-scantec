@@ -1,7 +1,6 @@
 package com.example.proyectofinaldb.models.repositories;
 
 import com.example.proyectofinaldb.models.Articulo;
-import com.example.proyectofinaldb.models.Producto;
 import com.example.proyectofinaldb.models.interfaces.Repository;
 import com.example.proyectofinaldb.util.ConexionDB;
 import javafx.collections.FXCollections;

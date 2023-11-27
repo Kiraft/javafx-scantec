@@ -1,7 +1,5 @@
 package com.example.proyectofinaldb;
 
-import com.example.proyectofinaldb.models.Producto;
-import com.example.proyectofinaldb.models.repositories.ImplementProducto;
 import com.example.proyectofinaldb.util.DBDao;
 
 public class test {

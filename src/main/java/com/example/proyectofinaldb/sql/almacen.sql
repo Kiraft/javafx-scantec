@@ -106,7 +106,7 @@ VALUES
 (3, 4, 3, 'Martillo', 'Herramienta para golpear.', 'Herramientas', 'Disponible', 20, '2023-09-01', 'Ferreteria Z', 'src/main/resources/com/example/proyectofinaldb/assets/img/articulos/martillo.PNG', 1111911287436, 60),
 (4, 2, 4, 'Refrigerador', 'Electrodoméstico para conservar alimentos.', 'Electrodomesticos', 'Disponible', 5, '2023-06-15', 'Tienda Electro', 'src/main/resources/com/example/proyectofinaldb/assets/img/articulos/refrijerador.PNG', 357863324488, 5000),
 (5, 5, 5, 'Camiseta', 'Prenda de vestir.', 'Ropa', 'Disponible', 30, '2023-10-02', 'Tienda Moda', 'src/main/resources/com/example/proyectofinaldb/assets/img/articulos/camiseta.PNG', 1972271276436, 150),
-(6, 6, 6, 'Laptop Machinike', 'Computadora Gaming', 'Computacion', 'Disponible', 30, '2023-11-02', 'Machinike', 'src/main/resources/com/example/proyectofinaldb/assets/img/articulos/laptop.PNG', 6975971291006,20000);
+(6, 6, 6, 'Laptop Machinike', 'Computadora Gaming', 'Computacion', 'Disponible', 30, '2023-11-02', 'Machinike', 'src/main/resources/com/example/proyectofinaldb/assets/img/articulos/laptop.PNG', 6975971291006, 20000);
 
 INSERT INTO ingreso (precio, marca, fecha_ingreso, metodo_adquisicion, articulos_id)
 VALUES

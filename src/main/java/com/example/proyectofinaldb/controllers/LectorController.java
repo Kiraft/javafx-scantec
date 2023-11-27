@@ -6,7 +6,6 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert.AlertType;
 
 import com.example.proyectofinaldb.models.repositories.ImplementProducto;
-import com.example.proyectofinaldb.models.Producto;
 import com.example.proyectofinaldb.util.AlertUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +27,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
 
 public class LectorController {
 
