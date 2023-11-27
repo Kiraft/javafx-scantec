@@ -72,6 +72,14 @@ CREATE TABLE prestamos (
     FOREIGN KEY (id_articulo) REFERENCES articulos(id)
 );
 
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user VARCHAR(50),
+    password VARCHAR(50),
+    rol VARCHAR(255)
+);
+
+
 INSERT INTO ubicacion (detalles_ubicacion, tipo_almacenamiento, capacidad)
 VALUES
 ('Estantería A1', 'Almacenamiento seco', 100),
@@ -123,3 +131,7 @@ VALUES
 ('En proceso', '2023-09-10', NULL, 'Solicitante nuevo', 3, 2),
 ('Devuelto', '2023-06-28', '2023-07-10', 'Pequeños arañazos', 1, 4),
 ('En proceso', '2023-10-05', NULL, 'Sin comentarios', 4, 5);
+
+INSERT INTO usuarios (user, password, rol) VALUES
+('kiraft', '4321', 'ADMIN'),
+('yamir', '4321', 'USUARIO');
