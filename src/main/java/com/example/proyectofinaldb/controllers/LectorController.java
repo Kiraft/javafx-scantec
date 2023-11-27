@@ -1,8 +1,11 @@
 package com.example.proyectofinaldb.controllers;
 
 import com.example.proyectofinaldb.models.Articulo;
+import com.example.proyectofinaldb.models.Usuario;
 import com.example.proyectofinaldb.util.BarCodeGenerator;
+import com.itextpdf.text.api.Indentable;
 import javafx.application.Platform;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 
 import com.example.proyectofinaldb.models.repositories.ImplementProducto;
@@ -25,10 +28,12 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class LectorController {
+public class LectorController implements Initializable {
 
     @FXML
     private ImageView ImageProduct;
@@ -156,6 +161,11 @@ public class LectorController {
     @FXML
     private TextField txtStock;
 
+    Usuario usuario;
+
+    public void setUsuario(Usuario usuario){
+        this.usuario = usuario;
+    }
 
     File fileImg = null;
     File fileimgEdit = null;
@@ -388,6 +398,26 @@ public class LectorController {
         txtCodigoBarras.clear();
         txtPrecio.clear();
         txtStock.clear();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Thread hilo = new Thread(() -> {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            Platform.runLater(() -> {
+                if(usuario.getRole().equals("USUARIO")){
+                    btnEditar.setVisible(false);
+                    btnEliminar.setVisible(false);
+                }
+            });
+        });
+
+        hilo.start();
     }
 }
 

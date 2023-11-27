@@ -59,6 +59,23 @@ public class ImplementUsuario implements Repository<Usuario> {
 
     public Usuario porUsuario (String user){
         Usuario u = null;
+        String sql = "SELECT * FROM usuarios where user = ?;";
+
+        try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
+            stmt.setString(1, user);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    u = new Usuario();
+                    u.setId(rs.getLong("id"));
+                    u.setUser(rs.getString("user"));
+                    u.setPassword(rs.getString("password"));
+                    u.setRole(rs.getString("role"));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("CUENTA - Por Usuario");
+        }
         return u;
     }
 }

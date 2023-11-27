@@ -55,8 +55,8 @@ public class NavbarController implements Initializable {
 
                 try {
                     Parent homeRoot = homeLoader.load();
-//                    HomeController homeController = homeLoader.getController();
-//                    homeController.setProducto(producto);
+                    LectorController homeController = homeLoader.getController();
+                    homeController.setUsuario(usuario);
                     containerLeft.getChildren().clear();
                     containerLeft.getChildren().add(homeRoot);
                 } catch (IOException e) {
@@ -105,6 +105,8 @@ public class NavbarController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                System.out.println(usuario);
             });
         });
 

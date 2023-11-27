@@ -6,6 +6,9 @@ public class Usuario {
     String password;
     String role;
 
+    public Usuario() {
+    }
+
     public Usuario(Long id, String user, String password, String role) {
         this.id = id;
         this.user = user;
@@ -43,5 +46,15 @@ public class Usuario {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", user='" + user + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }
