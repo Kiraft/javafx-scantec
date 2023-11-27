@@ -1,6 +1,7 @@
 package com.example.proyectofinaldb.controllers;
 
 import com.example.proyectofinaldb.App;
+import com.example.proyectofinaldb.models.Usuario;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,7 +34,10 @@ public class NavbarController implements Initializable {
     @FXML
     private Text labelNombre;
 
-
+    Usuario usuario;
+    public void setUsuario (Usuario usuario){
+        this.usuario = usuario;
+    }
     @FXML
     void exit(ActionEvent event) {
 

@@ -1,14 +1,17 @@
 package com.example.proyectofinaldb.controllers;
 
+import com.example.proyectofinaldb.models.Usuario;
+import com.example.proyectofinaldb.models.repositories.ImplementUsuario;
+import com.example.proyectofinaldb.util.StageLoaderAlumno;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import com.example.proyectofinaldb.util.AlertUtil;
+
+import java.io.IOException;
 
 public class LoginController {
 
@@ -85,36 +88,36 @@ public class LoginController {
         labelRecover.setUnderline(false);
     }
 
-
+    ImplementUsuario iu = new ImplementUsuario();
     private void handleLogin(ActionEvent event) {
-//        if (!txtUser.getText().isEmpty() && !txtPassword.getText().isEmpty()) {
-//
-//            String matricula = txtUser.getText();
-//            String pass = txtPassword.getText();
-//
-//            int state = rp.login(matricula, pass);
-//
-//            if (state != -1) {
-//                if (state == 1) {
-//                    try {
-//                        // MatriculaModel matriculaModel = new MatriculaModel(matricula);
-//                        StageLoaderAlumno.load("viewLandingPage.fxml", event, rp.porMatricula(matricula));
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                } else {
-//
-//                    AlertUtil.showAlert(AlertType.ERROR, "Error inicio de sesion", "Datos incorrectos intentalo de nuevo");
-//                }
-//            }else {
-//
-//                AlertUtil.showAlert(AlertType.ERROR, "Error inicio de sesion", "Problema servidores intentelo mas tarde");
-//            }
-//
-//        } else {
-//            AlertUtil.showAlert(AlertType.ERROR, "Error inicio de sesion", "Campos vacios porfavor llenarlos");
-//        }
-//
+        if (!txtUser.getText().isEmpty() && !txtPassword.getText().isEmpty()) {
+
+            String user = txtUser.getText();
+            String pass = txtPassword.getText();
+
+            int state = iu.login(user, pass);
+
+            if (state != -1) {
+                if (state == 1) {
+                    try {
+                        // MatriculaModel matriculaModel = new MatriculaModel(matricula);
+                        StageLoaderAlumno.load("view_navbar.fxml", event, iu.porUsuario(user));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+
+                    AlertUtil.showAlert(Alert.AlertType.ERROR, "Error inicio de sesion", "Datos incorrectos intentalo de nuevo");
+                }
+            }else {
+
+                AlertUtil.showAlert(Alert.AlertType.ERROR, "Error inicio de sesion", "Problema servidores intentelo mas tarde");
+            }
+
+        } else {
+            AlertUtil.showAlert(Alert.AlertType.ERROR, "Error inicio de sesion", "Campos vacios porfavor llenarlos");
+        }
+
     }
 
 }
