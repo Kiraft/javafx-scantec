@@ -7,6 +7,7 @@ module com.example.proyectofinaldb {
     requires itextpdf;
     requires java.desktop;
     requires com.google.zxing;
+    requires static lombok;
 
     opens com.example.proyectofinaldb to javafx.fxml;
     exports com.example.proyectofinaldb;
