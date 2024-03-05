@@ -13,19 +13,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectofinaldb.controllers.LectorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectofinaldb.controllers.LectorController">
    <children>
-      <Label fx:id="labelWelcome" layoutX="397.0" layoutY="152.0" text="BIENVENIDO" visible="false">
-         <font>
-            <Font name="Trebuchet MS" size="34.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="imgWelcome" fitHeight="311.0" fitWidth="350.0" layoutX="327.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@assets/IM.png" />
-         </image>
-      </ImageView>
-      <Pane layoutX="-6.0" prefHeight="110.0" prefWidth="987.0" style="-fx-background-color: #343131;">
+      <Pane fx:id="containerHeader" layoutX="-6.0" prefHeight="110.0" prefWidth="987.0" style="-fx-background-color: #343131;">
          <children>
             <Label layoutX="436.0" layoutY="14.0" text="Escanear" textFill="WHITE">
                <font>
@@ -341,6 +331,39 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="containerInicio" layoutX="201.0" layoutY="133.0" prefHeight="430.0" prefWidth="574.0">
+         <children>
+            <Label fx:id="labelWelcome" layoutX="196.0" layoutY="28.0" text="BIENVENIDO">
+               <font>
+                  <Font name="Trebuchet MS" size="34.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imgWelcome" fitHeight="311.0" fitWidth="350.0" layoutX="126.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/IM.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="contenedorNotUserAutorizate" layoutX="211.0" layoutY="143.0" prefHeight="430.0" prefWidth="574.0" visible="false">
+         <children>
+            <Label layoutX="104.0" layoutY="24.0" text="Producto no encontrado" textAlignment="CENTER">
+               <font>
+                  <Font name="Trebuchet MS" size="34.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="71.0" prefHeight="110.0" prefWidth="549.0" text="Contacte a un usuario autorizado para agregarlo" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Trebuchet MS" size="34.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="175.0" fitWidth="284.0" layoutX="200.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/1301464.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

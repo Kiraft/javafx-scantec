@@ -66,6 +66,12 @@ public class LectorController implements Initializable {
     private Button btnSi;
 
     @FXML
+    private Pane containerHeader;
+
+    @FXML
+    private Pane containerInicio;
+
+    @FXML
     private Pane contenedorEditProducto;
 
     @FXML
@@ -73,6 +79,9 @@ public class LectorController implements Initializable {
 
     @FXML
     private Pane contenedorNotProductRegister;
+
+    @FXML
+    private Pane contenedorNotUserAutorizate;
 
     @FXML
     private Pane contenedorRegistrarProducto;
@@ -234,12 +243,15 @@ public class LectorController implements Initializable {
     @FXML
     void buscar(ActionEvent event) throws FileNotFoundException {
 
+        // Validar el textfiel si se encuentra vacio o no
         if (!txtCode.getText().isEmpty()){
+
             contenedorEditProducto.setVisible(false);
             contenedorSuccessfulUpdate.setVisible(false);
-            labelWelcome.setVisible(false);
-            imgWelcome.setVisible(false);
+            containerInicio.setVisible(false);
+
             if (implementProducto.porCodigoBarras(txtCode.getText()) != null){
+                //En caso de que se encuentre un producto
                 contenedorSuccessfulRegister.setVisible(false);
                 contenedorRegistrarProducto.setVisible(false);
                 contenedorLeerProducto.setVisible(true);
@@ -253,12 +265,18 @@ public class LectorController implements Initializable {
                 Image img = new Image(new FileInputStream(a.getDireccionImagen()));
                 ImageProduct.setImage(img);
             }else{
-                AlertUtil.showAlert(AlertType.ERROR, "PRODUCTO NO REGISTRADO", "Este producto no se encuentro en la base de datos registrelo");
+                // En caso de que no encuentre
+                contenedorRegistrarProducto.setVisible(false);
                 contenedorSuccessfulRegister.setVisible(false);
                 contenedorLeerProducto.setVisible(false);
-                contenedorRegistrarProducto.setVisible(true);
-                txtCodigoBarras.setText(txtCode.getText());
-//                contenedorNotProductRegister.setVisible(true);
+
+                if (usuario.getRole().equals("ADMIN")){
+                    contenedorNotProductRegister.setVisible(true);
+                }else {
+                    contenedorNotUserAutorizate.setVisible(true);
+                }
+
+
             }
 
         }else{
@@ -310,8 +328,7 @@ public class LectorController implements Initializable {
         implementProducto.eliminarPorCodigoBarras(labelBarCode.getText());
         AlertUtil.showAlert(AlertType.CONFIRMATION, "EXITOSO", "SE A ELIMINADO EL PRODUCTO");
         contenedorLeerProducto.setVisible(false);
-        imgWelcome.setVisible(true);
-        labelWelcome.setVisible(true);
+        containerInicio.setVisible(true);
     }
     @FXML
     void editar(ActionEvent event) {
@@ -339,27 +356,34 @@ public class LectorController implements Initializable {
     int idAux = 0;
     @FXML
     void guardar(ActionEvent event) {
-        Integer idAuxLong = idAux;
 
-        Articulo a =  new Articulo();
-        a.setNombre(txtEditNombre.getText());
-        a.setPrecio(Double.parseDouble(txtEditPrecio.getText()));
-        a.setCantidad(Integer.parseInt(txtEditStock.getText()));
-        a.setProveedor(txtEditProveedor.getText());
-        a.setEstado(txtEditEstado.getText());
-        a.setCategoria(txtEditCategoria.getText());
-        a.setDescripcion(txtEditDescripcion.getText());
-//        if (fileimgEdit == null){
-//            p.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
-//        }else {
-//            p.setDireccionImagen(fileimgEdit.getAbsolutePath());
-//        }
-        a.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
+        if (event.getSource().equals(btnSi)){
+            contenedorRegistrarProducto.setVisible(true);
+                txtCodigoBarras.setText(txtCode.getText());
+                contenedorNotProductRegister.setVisible(false);
+        }else if(event.getSource().equals(btnNo)){
+            contenedorNotProductRegister.setVisible(false);
+            containerInicio.setVisible(true);
+        }else{
 
-        implementProducto.editar(a, idAuxLong);
+            Integer idAuxLong = idAux;
 
-        contenedorEditProducto.setVisible(false);
-        contenedorSuccessfulUpdate.setVisible(true);
+            Articulo a =  new Articulo();
+            a.setNombre(txtEditNombre.getText());
+            a.setPrecio(Double.parseDouble(txtEditPrecio.getText()));
+            a.setCantidad(Integer.parseInt(txtEditStock.getText()));
+            a.setProveedor(txtEditProveedor.getText());
+            a.setEstado(txtEditEstado.getText());
+            a.setCategoria(txtEditCategoria.getText());
+            a.setDescripcion(txtEditDescripcion.getText());
+            a.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
+
+            implementProducto.editar(a, idAuxLong);
+
+            contenedorEditProducto.setVisible(false);
+            contenedorSuccessfulUpdate.setVisible(true);
+        }
+
 
     }
 
