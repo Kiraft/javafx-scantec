@@ -32,7 +32,7 @@ public class StageLoaderAlumno {
 
             if (controller instanceof NavbarController) {
                 NavbarController navbarController = (NavbarController) controller;
-                navbarController.setUsuario(usuario);
+                navbarController.setUsuarioInScreen(usuario);
             }
 //            else if (controller instanceof MainController) {
 //                MainController archivoController = (MainController) controller;

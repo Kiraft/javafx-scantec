@@ -174,41 +174,21 @@ public class LectorController implements Initializable {
     private TextField txtStock;
 
     Usuario usuario;
-
-    public void setUsuario(Usuario usuario){
-        this.usuario = usuario;
-    }
-
+    Articulo articulo = null;
     File fileImg = null;
     File fileimgEdit = null;
 
     ImplementProducto implementProducto = new ImplementProducto();
 
+    public void setUsuarioInScreen(Usuario usuario){
+        this.usuario = usuario;
+    }
+
     @FXML
     void agregar(ActionEvent event) throws FileNotFoundException {
         String nombreAux = txtNombre.getText() + ".png";
         Articulo a = new Articulo();
-            a.setNombre(txtNombre.getText());
-            a.setPrecio(Double.parseDouble(txtPrecio.getText()));
-            a.setCodigoBarras(txtCodigoBarras.getText());
-           if (fileImg == null){
-               a.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
-           }else {
-               a.setDireccionImagen(fileImg.getAbsolutePath());
-           }
-           a.setCantidad(Integer.parseInt(txtStock.getText()));
-           a.setDescripcion(txtDescripcion.getText());
-            LocalDate selectedDate = datePicker.getValue();
-            if (selectedDate != null) {
-                Date date = java.sql.Date.valueOf(selectedDate);
-                a.setFecha_adquisicion(date);
-            }
-            a.setProveedor(txtProveedor.getText());
-            a.setCategoria(txtCategoria.getText());
-
-
-
-        implementProducto.guardar(a);
+        addArticulo(a);
 
         BarCodeGenerator.generatorBarCode(txtNombre.getText(), txtCodigoBarras.getText());
         contenedorRegistrarProducto.setVisible(false);
@@ -239,6 +219,30 @@ public class LectorController implements Initializable {
 
     }
 
+    private void addArticulo(Articulo a) {
+        a.setNombre(txtNombre.getText());
+        a.setPrecio(Double.parseDouble(txtPrecio.getText()));
+        a.setCodigoBarras(txtCodigoBarras.getText());
+
+        if (fileImg == null){
+            a.setDireccionImagen("src/main/resources/com/example/proyectofinaldb/assets/sinimagen.PNG");
+        }else {
+            a.setDireccionImagen(fileImg.getAbsolutePath());
+        }
+        a.setCantidad(Integer.parseInt(txtStock.getText()));
+        a.setDescripcion(txtDescripcion.getText());
+        LocalDate selectedDate = datePicker.getValue();
+        if (selectedDate != null) {
+            Date date = Date.valueOf(selectedDate);
+            a.setFecha_adquisicion(date);
+        }
+        a.setProveedor(txtProveedor.getText());
+        a.setCategoria(txtCategoria.getText());
+
+        //Guardamos el objeto de articulos en la base de datos
+        implementProducto.guardar(a);
+    }
+
 
     @FXML
     void buscar(ActionEvent event) throws FileNotFoundException {
@@ -249,21 +253,23 @@ public class LectorController implements Initializable {
             contenedorEditProducto.setVisible(false);
             contenedorSuccessfulUpdate.setVisible(false);
             containerInicio.setVisible(false);
+            contenedorNotUserAutorizate.setVisible(false);
 
             if (implementProducto.porCodigoBarras(txtCode.getText()) != null){
                 //En caso de que se encuentre un producto
                 contenedorSuccessfulRegister.setVisible(false);
                 contenedorRegistrarProducto.setVisible(false);
                 contenedorLeerProducto.setVisible(true);
-                Articulo a = implementProducto.porCodigoBarras(txtCode.getText());
 
+                // Crea un objeto para llenar los textfields
+                Articulo a = implementProducto.porCodigoBarras(txtCode.getText());
                 labelName.setText(a.getNombre());
                 labelPrice.setText(String.valueOf(a.getPrecio()));
                 labelStock.setText(String.valueOf(a.getCantidad()));
                 labelBarCode.setText(String.valueOf(a.getCodigoBarras()));
-
                 Image img = new Image(new FileInputStream(a.getDireccionImagen()));
                 ImageProduct.setImage(img);
+
             }else{
                 // En caso de que no encuentre
                 contenedorRegistrarProducto.setVisible(false);
@@ -276,15 +282,12 @@ public class LectorController implements Initializable {
                     contenedorNotUserAutorizate.setVisible(true);
                 }
 
-
             }
 
         }else{
             AlertUtil.showAlert(AlertType.ERROR, "Error codigo barras", "EL CAMPO ESTA VACIO");
         }
-
         txtCode.clear();
-
     }
 
     @FXML
@@ -333,12 +336,10 @@ public class LectorController implements Initializable {
     @FXML
     void editar(ActionEvent event) {
 
-
         contenedorLeerProducto.setVisible(false);
         contenedorEditProducto.setVisible(true);
 
         Articulo a = implementProducto.porCodigoBarras(labelBarCode.getText());
-
         txtEditNombre.setText(a.getNombre());
         txtEditPrecio.setText((a.getPrecio()).toString());
         txtEditStock.setText((a.getCantidad()).toString());

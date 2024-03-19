@@ -35,7 +35,7 @@ public class NavbarController implements Initializable {
     private Text labelNombre;
 
     Usuario usuario;
-    public void setUsuario (Usuario usuario){
+    public void setUsuarioInScreen (Usuario usuario){
         this.usuario = usuario;
     }
     @FXML
@@ -56,7 +56,7 @@ public class NavbarController implements Initializable {
                 try {
                     Parent homeRoot = lectorLoader.load();
                     LectorController lectorController = lectorLoader.getController();
-                    lectorController.setUsuario(usuario);
+                    lectorController.setUsuarioInScreen(usuario);
                     containerLeft.getChildren().clear();
                     containerLeft.getChildren().add(homeRoot);
                 } catch (IOException e) {
@@ -101,7 +101,7 @@ public class NavbarController implements Initializable {
                 try {
                     Parent homeRoot = lectorLoader.load();
                     LectorController lectorController = lectorLoader.getController();
-                    lectorController.setUsuario(usuario);
+                    lectorController.setUsuarioInScreen(usuario);
                     containerLeft.getChildren().clear();
                     containerLeft.getChildren().add(homeRoot);
                     labelNombre.setText(usuario.getRole());
